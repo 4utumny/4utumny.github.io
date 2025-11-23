@@ -1,0 +1,49 @@
+name: Deploy MkDocs to GitHub Pages
+permissions:
+  contents: write
+on:
+  push:
+    branches:
+      - main  # 监听 main 分支的推送事件
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2  # 检出代码
+      # 访问接触特定文件的最后一次提交才能检索日期
+      with:
+        fetch-depth: 0
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.12  # 设置 Python 版本
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt  # 安装 相关插件
+        pip cache purge
+    - name: Build the MkDocs site
+      run: mkdocs build  # 构建 MkDocs 网站
+      # 将 BingSiteAuth.xml 添加到根目录
+    - name: Add BingSiteAuth.xml to root directory
+      run: cp -f ./Bing-Webmaster-Tool/BingSiteAuth.xml ./site
+    - name: Add indexnow to root directory
+      run: cp -f ./Bing-Webmaster-Tool/50323f9602a64903a759f76a86741635.txt ./site
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./site  # mkdocs 构建输出目录为 site
+    - name: Copy IndexNow workflow after deploy
+      env:
+        PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      run: |
+        git config --global user.email "rangoljx@qq.com"
+        git config --global user.name "rango"
+        git clone --branch=gh-pages https://github.com/rangoljx/rangoljx.github.io.git gh-pages
+        cd gh-pages
+        mkdir -p .github/workflows
+        cp -f ../Bing-Webmaster-Tool/IndexNow.yml .github/workflows/
+        git add .github/workflows/IndexNow.yml
+        git commit -m "Add IndexNow workflow"
+        git push https://x-access-token:${PERSONAL_ACCESS_TOKEN}@github.com/rangoljx/rangoljx.github.io.git
