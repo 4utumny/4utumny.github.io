@@ -3,8 +3,8 @@ site_url: https://4utumny.github.io/   # 网站地址
 site_author: 4utumny             # 网站作者
 site_description: 4utumny's Notes       # 网站描述
 # 代码仓库信息
-repo_name: rango # 仓库名称
-repo_url: https://github.com/rangoljx/rangoljx.github.io/ # 仓库地址
+repo_name: 4utumny/4utumny.github.io # 仓库名称
+repo_url: https://github.com/4utumny/4utumny.github.io # 仓库地址
 theme:
   name: material        # 主题名称
   custom_dir: docs/overrides          # 自定义目录,用于存放自定义的css、js等文件
