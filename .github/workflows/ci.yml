@@ -28,7 +28,7 @@ jobs:
     - name: Add BingSiteAuth.xml to root directory
       run: cp -f ./Bing-Webmaster-Tool/BingSiteAuth.xml ./site
     - name: Add indexnow to root directory
-      run: cp -f ./Bing-Webmaster-Tool/50323f9602a64903a759f76a86741635.txt ./site
+      run: cp -f ./Bing-Webmaster-Tool/ec62a03e16bf4c22861dc9a4b721adc0.txt ./site
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
@@ -38,12 +38,12 @@ jobs:
       env:
         PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       run: |
-        git config --global user.email "rangoljx@qq.com"
-        git config --global user.name "rango"
-        git clone --branch=gh-pages https://github.com/rangoljx/rangoljx.github.io.git gh-pages
+        git config --global user.email "1657636021@qq.com"
+        git config --global user.name "4utumny"
+        git clone --branch=gh-pages https://github.com/4utumny/4utumny.github.io.git gh-pages
         cd gh-pages
         mkdir -p .github/workflows
         cp -f ../Bing-Webmaster-Tool/IndexNow.yml .github/workflows/
         git add .github/workflows/IndexNow.yml
         git commit -m "Add IndexNow workflow"
-        git push https://x-access-token:${PERSONAL_ACCESS_TOKEN}@github.com/rangoljx/rangoljx.github.io.git
+        git push https://x-access-token:${PERSONAL_ACCESS_TOKEN}@github.com/4utumny/4utumny.github.io.git
