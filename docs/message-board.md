@@ -1,10 +1,9 @@
 ---
 comments: true
 hide:
-    - footer
-    - navigation
-    - toc
-# 不显示页面统计
+  - footer
+  - navigation
+  - toc
 nostatistics: true
 ---
 
