@@ -21,5 +21,5 @@ jobs:
           since: 3
           since-unit: "day"
           limit: 10
-          key: ${{ secrets.INDEXNOW_KEY }}
+          key: ${{ ec62a03e16bf4c22861dc9a4b721adc0 }}
           key-location: ${{ secrets.INDEXNOW_KEY_LOCATION }}
