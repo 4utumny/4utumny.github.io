@@ -39,7 +39,7 @@ theme:
     text: Roboto      # 主要文本字体
     code: Roboto Mono     # 代码字体                
   icon: # 一些用到的icon   material/washing-machine-alert
-    repo: youshang/site-author # 修改网站作者仓库图标
+    repo: customsvg/site-author # 修改网站作者仓库图标
     edit: material/pencil-box-multiple  # 修改编辑图标
     view: material/eye    # 修改查看图标
     logo: simple/testcafe      # 网站logo  
