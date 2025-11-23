@@ -10,7 +10,7 @@ nostatistics: true
 <!-- 本站共有 {{ pages }} 个页面，{{ words }} 个字，{{ codes }} 行代码。 -->
 
 <!-- # <font color=#"789510"> **Welcome to Rango's note!** </font> -->
-# <font color：rgba(8, 227, 154, 0.71)> **And you, my friend, you are the real hero!** </font>
+# <font color：rgba(8, 227, 154, 0.71)> **And you my, my friend, you are the real hero!** </font>
 
 ---
 
