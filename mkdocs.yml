@@ -1,0 +1,66 @@
+site_name: 4utumny's Blog
+site_url: https://4utumny.github.io/
+site_author: 4utumny
+repo_name: 4utumny/4utumny.github.io
+repo_url: https://github.com/4utumny/4utumny.github.io
+edit_uri: edit/main/docs/  # 允许访客建议修改
+
+theme:
+  name: material
+  language: zh # 默认语言中文
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette: 
+    - scheme: default
+      primary: white
+      toggle:
+        icon: material/weather-night
+        name: 切换至夜间模式
+    - scheme: slate 
+      primary: black
+      toggle:
+        icon: material/weather-sunny
+        name: 切换至日间模式
+  icon:
+    logo: material/book-open-page-variant
+
+# 插件配置
+plugins:
+  - search
+  - glightbox:  # 图片点击放大
+      touchNavigation: true
+      loop: false
+      effect: zoom
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: date
+  - git-committers:
+      repository: 4utumny/4utumny.github.io
+      branch: main  # 注意：现在的GitHub默认分支通常是 main
+
+# Markdown 扩展 (兼容 Obsidian 的关键配置)
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - attr_list
+  - md_in_html
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.arithmatex:
+      generic: true
+  - toc:
+      permalink: true
+
+# 导航栏 (示例，你可以随时修改)
+nav:
+  - 首页: index.md
+  - 归档: tags.md
