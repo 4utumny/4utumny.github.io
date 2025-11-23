@@ -158,8 +158,8 @@ plugins:
   # -----pip install mkdocs-git-committers-plugin-2
   #   替代git-authors,自动获取仓库信息 显示头像
   - git-committers:
-      repository: rangoljx/rangoljx.github.io # 仓库地址
-      branch: master                # 分支    
+      repository: 4utumny/4utumny.github.io # 仓库地址
+      branch: main                # 分支    
       # show_line_count: true
       exclude:  # 排除不需要显示的页面
         - index.md
