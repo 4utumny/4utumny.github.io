@@ -12,6 +12,9 @@ nostatistics: true
 <!-- # <font color=#"789510"> **Welcome to Rango's note!** </font> -->
 # <font color：rgba(8, 227, 154, 0.71)> **And you my, my friend, you are the real hero!** </font>
 
+
+<link rel="canonical" href="https://4utumny.github.io/" />
+
 ---
 
 !!! danger ""
