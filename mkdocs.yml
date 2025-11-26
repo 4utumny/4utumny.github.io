@@ -13,7 +13,7 @@ theme:
   keyboard: #配置搜索快捷键
     search: s, /
 
-  favicon: images/mkdocs_favicon.png              # 网站图标
+  favicon: images/autumn.png              # 网站图标
   palette:    # 调色板，用于配置主题的颜色（暗黑模式切换）
     # 可用的主题色：
     # red, pink, purple, deep purple, indigo, blue, light blue, 
