@@ -41,7 +41,6 @@ nostatistics: true
         <div class="card status-box">
             <div class="box-header">
                 <span class="box-title">⚡ My Status</span>
-                <!-- 修改：使用 span + onclick 替代 a 标签，彻底禁用 MkDocs 的悬浮预览 -->
                 <span onclick="location.href='status/'" class="more-btn" title="查看更多">More+</span>
             </div>
             <div id="status-list" class="status-list">
@@ -53,7 +52,7 @@ nostatistics: true
     <!-- 右侧：主内容 -->
     <div class="right-content">
         
-        <!-- 1. Hero 标题区 (横向排列) -->
+        <!-- 1. Hero 标题区 -->
         <div class="hero-section">
             <span class="hello-text">Hello I'm</span>
             <span class="name-text">4utumny</span>
@@ -78,15 +77,13 @@ nostatistics: true
             </a>
         </div>
 
-        <!-- 2. 真实 GitHub 贡献墙 -->
+        <!-- 2. GitHub 贡献墙 (已修复: 使用 SVG 图片服务替代不稳定 JS) -->
         <div class="card graph-card">
             <div class="graph-header">
-                <span class="graph-title">🌱 Contributions (Last 365 Days)</span>
-                <span class="graph-legend">Less <span class="legend-box l-0"></span><span class="legend-box l-1"></span><span class="legend-box l-2"></span><span class="legend-box l-3"></span><span class="legend-box l-4"></span> More</span>
+                <span class="graph-title">🌱 GitHub Contributions</span>
             </div>
-            <!-- 加载状态提示 -->
-            <div id="contrib-loading" style="font-size:0.8rem; color:#888; text-align:center; padding:10px;">Loading GitHub Data...</div>
-            <div class="contribution-grid" id="contrib-grid"></div>
+            <!-- 使用 ghchart 服务，颜色设为绿色系 (216e39)，这里会自动获取你GitHub的所有数据 -->
+            <img src="https://ghchart.rshah.org/216e39/4utumny" alt="4utumny's Github chart" class="gh-chart-img" />
         </div>
 
         <!-- 3. 学术生涯 -->
@@ -158,8 +155,6 @@ nostatistics: true
     --text-main: var(--md-text-color);
     --text-muted: var(--md-default-fg-color--light);
     --accent-color: #08e39a;
-    --grid-gap: 3px; /* 缩小间隙以适应一行 */
-    --box-size: 10px; /* 缩小格子以适应一行 */
 }
 
 /* 布局基础 */
@@ -193,26 +188,30 @@ nostatistics: true
 /* === 左侧栏 === */
 .left-sidebar {
     width: 280px;
-    flex-shrink: 0;
+    flex-shrink: 0; /* 禁止左侧栏被挤压 */
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-/* 头像 */
+/* 修复1：头像样式调整 */
 .avatar-wrapper {
     display: flex;
     justify-content: center;
     padding: 10px 0;
+    flex-shrink: 0; /* 防止容器被挤压 */
 }
 .avatar-circle {
     width: 120px; 
     height: 120px; 
+    /* 关键修复：强制1:1比例，防止变成椭圆 */
+    aspect-ratio: 1 / 1; 
     border-radius: 50%;
-    object-fit: cover;
+    object-fit: cover; /* 保证图片填充裁剪，不变形 */
     border: 4px solid var(--md-default-bg-color);
     box-shadow: 0 0 0 2px var(--accent-color);
     transition: transform 0.3s ease;
+    display: block;
 }
 .avatar-circle:hover {
     transform: rotate(5deg) scale(1.05);
@@ -234,7 +233,7 @@ nostatistics: true
 .box-title { font-weight: bold; font-size: 0.95rem; color: var(--text-main); }
 .more-btn { 
     font-size: 0.75rem; color: var(--accent-color); 
-    font-weight: bold; cursor: pointer; /* 鼠标手势 */
+    font-weight: bold; cursor: pointer;
     padding: 2px 5px;
 }
 .more-btn:hover { text-decoration: underline; }
@@ -273,17 +272,16 @@ nostatistics: true
     font-weight: 700;
     color: var(--text-main);
 }
-/* 修复点1：名字字体截断问题 */
 .name-text {
     font-family: 'Pacifico', cursive;
     font-size: 3.5rem;
     background: linear-gradient(120deg, #08e39a, #3498db);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    line-height: 1.4; /* 增大行高 */
-    padding-bottom: 15px; /* 增加底部内边距，容纳y的尾巴 */
-    margin-bottom: -15px; /* 抵消内边距带来的布局偏移 */
-    display: inline-block; /* 确保padding生效 */
+    line-height: 1.4;
+    padding-bottom: 15px;
+    margin-bottom: -15px;
+    display: inline-block;
 }
 
 .desc-text {
@@ -306,37 +304,21 @@ nostatistics: true
 .social-btn:hover { background: var(--accent-color); color: #fff; transform: translateY(-3px); }
 .social-btn svg { width: 22px; height: 22px; }
 
-/* 贡献图 */
-.graph-card { padding: 15px; }
-.graph-header { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 8px; }
-.graph-legend { display: flex; align-items: center; gap: 2px; }
-.legend-box { width: 10px; height: 10px; border-radius: 2px; display: inline-block; margin: 0 2px;}
-
-/* 贡献图网格 - 移除滚动条 */
-.contribution-grid {
-    display: grid;
-    /* 53列 (周) */
-    grid-template-columns: repeat(53, var(--box-size));
-    /* 7行 (天) */
-    grid-template-rows: repeat(7, var(--box-size));
-    gap: var(--grid-gap);
-    justify-content: flex-start; /* 靠左对齐 */
-    overflow: hidden; /* 隐藏溢出 */
+/* 修复2：贡献图样式 */
+.graph-card { padding: 15px; overflow: hidden; }
+.graph-header { margin-bottom: 10px; }
+.graph-title { font-weight: bold; color: var(--text-muted); font-size: 0.9rem; }
+.gh-chart-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* 适配暗黑模式，稍微调整图片对比度 */
+    border-radius: 4px;
 }
-.grid-box { width: var(--box-size); height: var(--box-size); border-radius: 2px; background: var(--md-default-fg-color--lightest); }
-
-/* 贡献颜色 */
-[data-md-color-scheme="default"] .l-0 { background: #ebedf0; }
-[data-md-color-scheme="default"] .l-1 { background: #9be9a8; }
-[data-md-color-scheme="default"] .l-2 { background: #40c463; }
-[data-md-color-scheme="default"] .l-3 { background: #30a14e; }
-[data-md-color-scheme="default"] .l-4 { background: #216e39; }
-
-[data-md-color-scheme="slate"] .l-0 { background: #161b22; }
-[data-md-color-scheme="slate"] .l-1 { background: #0e4429; }
-[data-md-color-scheme="slate"] .l-2 { background: #006d32; }
-[data-md-color-scheme="slate"] .l-3 { background: #26a641; }
-[data-md-color-scheme="slate"] .l-4 { background: #39d353; }
+/* 暗黑模式下反转颜色或者调整透明度，ghchart 本身背景是透明的 */
+[data-md-color-scheme="slate"] .gh-chart-img {
+    filter: hue-rotate(180deg) invert(1) brightness(0.9);
+}
 
 /* === 学术生涯 === */
 .edu-section-title { font-weight: bold; font-size: 1.2rem; margin: 10px 0 5px; color: var(--text-main); }
@@ -377,17 +359,13 @@ nostatistics: true
     .edu-item { flex-direction: column; align-items: flex-start; text-align: left; }
     .edu-logo-wrapper { width: 50px; height: 50px; margin-bottom: 10px; }
     .edu-row-1 { flex-direction: row; width: 100%; }
-    /* 移动端允许滚动 */
-    .contribution-grid { overflow-x: auto; grid-template-columns: repeat(53, 10px); }
 }
 </style>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     
-    // -------------------------------------------------------------------
-    // 1. Status 列表 (静态数据)
-    // -------------------------------------------------------------------
+    // Status 列表 (静态数据)
     const statusData = [
         { date: "2024-05-01", text: "Writing my final thesis, feeling a bit stressed! 📝" },
         { date: "2024-04-28", text: "Refactoring my personal website homepage. 🎨" },
@@ -396,126 +374,23 @@ document.addEventListener("DOMContentLoaded", function() {
     ];
 
     const statusContainer = document.getElementById('status-list');
-    statusData.slice(0, 4).forEach(item => {
-        let div = document.createElement('div');
-        div.className = 'status-item';
-        div.innerHTML = `<span class="s-text">${item.text}</span><span class="s-date">📅 ${item.date}</span>`;
-        statusContainer.appendChild(div);
-    });
-
-    // -------------------------------------------------------------------
-    // 2. 真实 GitHub 贡献图逻辑
-    // -------------------------------------------------------------------
-    const gridContainer = document.getElementById('contrib-grid');
-    const loadingDiv = document.getElementById('contrib-loading');
-    
-    // 配置信息
-    const username = "4utumny";
-    const repo = "4utumny.github.io";
-    
-    // 初始化空网格 (53列 x 7行 = 371个格子，确保覆盖一年)
-    const totalDays = 371; 
-    const boxes = [];
-    
-    for (let i = 0; i < totalDays; i++) {
-        let div = document.createElement('div');
-        div.className = 'grid-box l-0'; // 默认灰色
-        gridContainer.appendChild(div);
-        boxes.push(div);
-    }
-
-    // 获取 GitHub Commit 数据
-    async function fetchCommits() {
-        try {
-            // 获取最近100条 commit (GitHub API 每页最多100，对于展示活跃度通常够了)
-            // 如果你提交非常频繁，可以考虑 fetch 两页，但注意 API 速率限制
-            const response = await fetch(`https://api.github.com/repos/${username}/${repo}/commits?per_page=100`);
-            
-            if (!response.ok) throw new Error('Network response was not ok');
-            const data = await response.json();
-
-            // 统计每天的 commit 数量
-            const commitMap = {};
-            data.forEach(commit => {
-                // commit.commit.author.date 格式: "2024-05-01T12:00:00Z"
-                const dateStr = commit.commit.author.date.split('T')[0];
-                if (commitMap[dateStr]) {
-                    commitMap[dateStr]++;
-                } else {
-                    commitMap[dateStr] = 1;
-                }
-            });
-
-            renderGrid(commitMap);
-            loadingDiv.style.display = 'none'; // 隐藏 Loading
-
-        } catch (error) {
-            console.error('Error fetching commits:', error);
-            loadingDiv.innerText = "Failed to load GitHub data (API Rate Limit or Network Error).";
-        }
-    }
-
-    // 渲染网格颜色
-    function renderGrid(commitMap) {
-        const today = new Date();
-        // 计算这一年的起始日期：我们从网格的最后一个格子(今天)倒推
-        // 这里的逻辑是：Grid 是竖排还是横排？GitHub 官方是竖排 (Column=Week, Row=Day)
-        // CSS Grid 我们定义了 53 列，7 行，默认是先填满第一行，再填第二行 (row-dense)
-        // 为了模拟 GitHub 的竖排效果 (Column-first)，我们需要用 CSS grid-auto-flow: column
-        gridContainer.style.gridAutoFlow = "column";
-
-        // 我们需要填充 53周 * 7天
-        // 从 "一年前的那个周日" 开始计算，或者是简单的 "从今天倒推371天"
-        
-        // 简化逻辑：倒序填充。最后一个格子是今天。
-        // 但 Grid 布局默认是从左上角开始。
-        // 所以我们正序计算日期。
-        
-        // 找到 Grid 开始的日期 (大约一年前)
-        // 假设 Grid 结束于今天，那么 Grid 的第 (totalDays-1) 个格子是今天
-        // 但是 GitHub 的 Grid 通常结束于 "本周六" 或者 "今天"
-        // 让我们简单处理：计算 Grid 第一个格子代表的日期
-        
-        // GitHub Grid 逻辑：最后的一列包含今天。
-        // 如果今天是周三，那么最后这一列下面还有空位。
-        // 为了简单，我们只映射过去 365 天的数据到这 371 个格子里。
-        
-        // 生成日期数组
-        const dateArray = [];
-        for (let i = 0; i < totalDays; i++) {
-            const d = new Date();
-            d.setDate(d.getDate() - (totalDays - 1 - i)); // 倒推
-            const dateString = d.toISOString().split('T')[0];
-            dateArray.push(dateString);
-        }
-
-        // 填充颜色
-        dateArray.forEach((dateStr, index) => {
-            const count = commitMap[dateStr] || 0;
-            let level = 0;
-            if (count > 0) level = 1;
-            if (count > 2) level = 2;
-            if (count > 4) level = 3;
-            if (count > 6) level = 4;
-            
-            if (boxes[index]) {
-                boxes[index].className = `grid-box l-${level}`;
-                boxes[index].title = `${dateStr}: ${count} commits`; // 添加简单的鼠标提示
-            }
+    if(statusContainer){
+        statusData.slice(0, 4).forEach(item => {
+            let div = document.createElement('div');
+            div.className = 'status-item';
+            div.innerHTML = `<span class="s-text">${item.text}</span><span class="s-date">📅 ${item.date}</span>`;
+            statusContainer.appendChild(div);
         });
     }
 
-    fetchCommits();
-
-    // -------------------------------------------------------------------
-    // 3. 网站运行时间
-    // -------------------------------------------------------------------
+    // 网站运行时间
     function updateTime() {
         var startDate = new Date("2022/01/01 00:00:00"); // 修改为你的时间
         var now = new Date();
         var diff = now - startDate;
         var days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        document.getElementById("web-time").innerText = days + " Days";
+        var timeEl = document.getElementById("web-time");
+        if(timeEl) timeEl.innerText = days + " Days";
     }
     updateTime();
 });
