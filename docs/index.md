@@ -369,25 +369,23 @@ nostatistics: true
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     
-    // === 自动获取 Status 逻辑 ===
-    // 原理：status.md 会被 MkDocs 编译成 HTML。
-    // 我们在这里用 fetch 请求那个页面，解析 HTML，把前 4 条拿过来。
+    // === 自动获取 Status 逻辑 (支持中文) ===
     async function loadStatus() {
         const statusContainer = document.getElementById('status-list');
         if (!statusContainer) return;
 
         try {
-            // 请求 status 页面 (相对路径, 兼容本地和 GitHub Pages)
-            const response = await fetch('status/');
+            // 1. 请求 status 页面
+            // 增加时间戳参数 timestamp，防止浏览器缓存旧的 status 页面
+            const response = await fetch('status/?t=' + new Date().getTime());
             if (!response.ok) throw new Error("Status page not found");
             
-            // 解析 HTML
+            // 2. 解析 HTML
             const text = await response.text();
             const parser = new DOMParser();
             const doc = parser.parseFromString(text, 'text/html');
 
-            // 查找 .timeline-page 下的 li 元素 (status.md 中定义的结构)
-            // 选择器对应 status.md 渲染后的 HTML 结构
+            // 3. 查找内容
             const listItems = doc.querySelectorAll('.timeline-page ul li');
             
             if (listItems.length > 0) {
@@ -396,19 +394,21 @@ document.addEventListener("DOMContentLoaded", function() {
                 // 取前 4 条
                 for(let i=0; i < Math.min(4, listItems.length); i++) {
                     const li = listItems[i];
-                    // status.md 格式: * **2024-05-01** : Content...
-                    // 编译后: <li><strong>2024-05-01</strong> : Content...</li>
                     
+                    // 获取日期 (strong 标签内的内容)
                     const dateEl = li.querySelector('strong');
                     let date = dateEl ? dateEl.textContent.trim() : 'Unknown';
                     
-                    // 获取内容文本：去掉日期部分的文本
-                    // cloneNode 是为了不破坏原 DOM，虽然后面不用了
-                    let content = li.textContent.trim();
-                    if(dateEl) {
-                        // 简单的替换逻辑，把日期和冒号去掉
-                        content = content.replace(date, '').replace(/^[\s:]+/, '').trim();
-                    }
+                    // 获取纯文本内容
+                    // 现在的逻辑是：获取整个 li 的文本 -> 删掉日期 -> 删掉开头的冒号(中英文)和空格
+                    let rawText = li.textContent.trim();
+                    
+                    // 移除日期部分 (例如 "2024-05-02")
+                    let content = rawText.replace(date, '');
+                    
+                    // 核心修复：移除开头的 英文冒号(:)、中文冒号(：) 以及空格
+                    // 正则表达式 /^[\s:：]+/ 匹配开头的所有 空格、: 和 ：
+                    content = content.replace(/^[\s:：]+/, '').trim();
 
                     // 创建 DOM
                     let div = document.createElement('div');
@@ -422,8 +422,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         } catch (err) {
             console.error("加载状态失败:", err);
-            // 失败时回退到手动数据或错误提示
-            statusContainer.innerHTML = '<div style="padding:10px; font-size:0.8rem; color:gray">无法加载动态，请检查网络或 status.md 路径。</div>';
+            statusContainer.innerHTML = '<div style="padding:10px; font-size:0.8rem; color:gray">无法加载动态。</div>';
         }
     }
 
