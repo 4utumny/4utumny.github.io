@@ -1920,12 +1920,6 @@
 <p><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Quicksand:wght@700&amp;display=swap" rel="stylesheet"></p>
-<!-- 
-  =========================================
-  HTML 结构
-  =========================================
--->
-
 <!-- 背景层 -->
 <div id="bg-layer"></div>
 <div id="bg-overlay"></div>
@@ -1941,7 +1935,7 @@
             <div class="status-indicator"></div>
         </div>
 
-        <!-- 2. 信息 (已更新地点) -->
+        <!-- 2. 信息 -->
         <div class="glass-box info-box">
             <div class="info-row">
                 <span class="icon">📍</span>
@@ -1963,13 +1957,12 @@
             <span class="tag-badge">骑行</span>
         </div>
 
-        <!-- 4. 自动化动态 (JavaScript 自动填充) -->
+        <!-- 4. 自动化动态 -->
         <div class="glass-box timeline-box">
             <div class="timeline-title">⚡ Latest Activity</div>
             <div class="timeline-item">
                 <div class="dot active"></div>
                 <div class="content">
-                    <!-- 这里的内容会由 JS 自动抓取 GitHub 最新提交替换 -->
                     <span class="time" id="last-commit-date">Loading...</span>
                     <span class="text" id="last-commit-msg">Fetching data...</span>
                 </div>
@@ -1980,14 +1973,14 @@
     <!-- 右侧内容 -->
     <div class="right-content">
 
-        <!-- 1. 超大标题 -->
+        <!-- 1. 超大标题 (日间模式配色) -->
         <div class="welcome-section">
             <h1 class="hello-text">Hello I'm <span class="name-highlight">4utumny</span></h1>
             <p class="role-text">👨‍💻 Independent Developer &amp; Student</p>
             <p class="desc-text">📝 The only way to do <span class="tag-highlight">great</span> work is to <span class="tag-highlight">love</span> what you do.</p>
         </div>
 
-        <!-- 2. 社交按钮 -->
+        <!-- 2. 社交按钮 (深色图标) -->
         <div class="social-row">
             <a href="https://github.com/4utumny" target="_blank" class="social-btn" title="GitHub">
                 <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33c.85 0 1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"></path></svg>
@@ -2003,15 +1996,14 @@
             </a>
         </div>
 
-        <!-- 3. GitHub 贡献图 (纯格子版) -->
-        <!-- 容器使用 crop-chart 类来裁切文字 -->
+        <!-- 3. GitHub 贡献图 (裁切版) -->
         <div class="glass-box github-chart-box crop-chart">
             <a href="https://github.com/4utumny" target="_blank" style="display: block; width: 100%;">
                 <img src="https://ghchart.rshah.org/08e39a/4utumny" alt="Github Chart" class="gh-chart-img">
             </a>
         </div>
 
-        <!-- 4. 学术生涯里程碑 (替代原 Site) -->
+        <!-- 4. 学术生涯里程碑 -->
         <div class="edu-section">
             <div class="site-section-title">
                 <span class="icon">🚀</span> Academic Journey
@@ -2021,7 +2013,7 @@
                 <!-- 本科卡片 -->
                 <div class="glass-box edu-card cumt-style">
                     <div class="edu-header">
-                        <span class="edu-icon">💎</span> <!-- 可换成矿大Logo图片 -->
+                        <span class="edu-icon">💎</span>
                         <span class="edu-years">2022 - 2026</span>
                     </div>
                     <div class="edu-body">
@@ -2035,7 +2027,7 @@
                 <!-- 硕士卡片 -->
                 <div class="glass-box edu-card ecnu-style">
                     <div class="edu-header">
-                        <span class="edu-icon">🌸</span> <!-- 可换成华师大Logo图片 -->
+                        <span class="edu-icon">🌸</span>
                         <span class="edu-years">2026 - 2029</span>
                     </div>
                     <div class="edu-body">
@@ -2048,7 +2040,7 @@
             </div>
         </div>
 
-        <!-- 5. 创意数据仪表盘 Footer -->
+        <!-- 5. 数据仪表盘 Footer -->
         <div class="stats-dashboard">
             <div class="stat-item">
                 <span class="stat-icon">⏳</span>
@@ -2074,15 +2066,33 @@
 
 <!-- 
   =========================================
-  CSS 样式
+  CSS 样式 (日间模式专属优化)
   =========================================
 -->
 <style>
-    /* 基础重置 */
+    /* 1. 强制隐藏导航栏的“日/夜切换按钮” */
+    .md-header__option[for^="__palette"] { display: none !important; }
+
+    /* 2. 强制锁定亮色背景 */
+    body, .md-main {
+        background-color: #f5f5f5 !important; /* 浅灰底色 */
+        color: #333333 !important; /* 深黑文字 */
+    }
+
+    /* 3. 头部导航栏透明化 & 文字变黑 */
+    header.md-header {
+        background-color: rgba(255, 255, 255, 0.4) !important; /* 白色半透明 */
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05) !important;
+    }
+    .md-header__title, .md-header__button { color: #333 !important; } /* 导航文字变黑 */
+
+    /* 重置 */
     .md-content__inner { margin: 0 !important; padding: 0 !important; max-width: 100% !important; }
     .md-main__inner { margin: 0 !important; }
 
-    /* 背景 */
+    /* 背景层 - 使用浅色遮罩 */
     #bg-layer {
         position: fixed; top: 0; left: 0; width: 100%; height: 100%;
         z-index: 0; background-size: cover; background-position: center;
@@ -2091,18 +2101,17 @@
     #bg-overlay {
         position: fixed; top: 0; left: 0; width: 100%; height: 100%;
         z-index: 1;
-        backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
-        background: rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(5px);
+        background: rgba(255, 255, 255, 0.2); /* 关键：白色浅遮罩 */
     }
 
     /* 主布局 */
     .profile-container {
         position: relative; z-index: 2;
-        display: flex; max-width: 1200px; /* 稍微加宽以容纳更大的图表 */
-        margin: 6vh auto 10vh; /* 底部留白给 dashboard */
-        gap: 40px; padding: 20px;
+        display: flex; max-width: 1200px; 
+        margin: 6vh auto 10vh; gap: 40px; padding: 20px;
         font-family: 'Quicksand', 'Segoe UI', sans-serif;
-        color: #fff;
+        color: #333; /* 全局字体颜色变深 */
     }
 
     /* === 左侧栏 === */
@@ -2110,189 +2119,163 @@
     .avatar-card { text-align: center; margin-bottom: 10px; }
     .avatar-img {
         width: 120px; height: 120px; border-radius: 50%;
-        border: 4px solid rgba(255, 255, 255, 0.3);
+        border: 4px solid rgba(255, 255, 255, 0.8); /* 纯白边框 */
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         transition: transform 0.4s ease;
     }
     .avatar-img:hover { transform: rotate(360deg); }
 
-    /* 磨砂玻璃通用 */
+    /* 【关键】日间模式磨砂玻璃：乳白色 */
     .glass-box {
-        background: rgba(30, 30, 30, 0.5);
-        backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.65); /* 白色半透明 */
+        backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.8); /* 白色边框 */
         border-radius: 16px; padding: 20px;
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05); /* 阴影变浅 */
     }
 
-    .info-row { display: flex; align-items: center; gap: 12px; font-size: 1rem; color: #e0e0e0; margin-bottom: 10px; }
-    .info-row:last-child { margin-bottom: 0; }
+    .info-row { display: flex; align-items: center; gap: 12px; font-size: 1rem; color: #444; margin-bottom: 10px; font-weight: 600;}
+    .info-row .icon { color: #08e39a; }
 
     .tags-box { display: flex; flex-wrap: wrap; gap: 8px; }
     .tag-badge {
-        background: rgba(255, 255, 255, 0.15); padding: 5px 12px;
-        border-radius: 8px; font-size: 0.85rem; color: #fff;
+        background: rgba(0, 0, 0, 0.05); /* 浅灰背景 */
+        padding: 5px 12px; border-radius: 8px; 
+        font-size: 0.85rem; color: #333; font-weight: 600;
+        border: 1px solid rgba(0,0,0,0.02);
     }
 
-    /* 左侧动态 Timeline */
+    /* 动态 Timeline (日间) */
     .timeline-box { margin-top: auto; padding: 15px 20px; }
-    .timeline-title { font-size: 0.8rem; text-transform: uppercase; color: #888; margin-bottom: 10px; letter-spacing: 1px; }
+    .timeline-title { font-size: 0.8rem; text-transform: uppercase; color: #666; margin-bottom: 10px; letter-spacing: 1px; font-weight: 700;}
     .timeline-item { display: flex; gap: 15px; align-items: flex-start; }
     .dot { 
         width: 10px; height: 10px; background: #08e39a; 
-        border-radius: 50%; margin-top: 6px; box-shadow: 0 0 8px #08e39a;
+        border-radius: 50%; margin-top: 6px; box-shadow: 0 0 5px rgba(8, 227, 154, 0.5);
         flex-shrink: 0;
     }
-    .content { display: flex; flex-direction: column; overflow: hidden; }
-    .time { font-size: 0.75rem; color: #aaa; margin-bottom: 2px; }
+    .time { font-size: 0.75rem; color: #777; margin-bottom: 2px; }
     .text { 
-        font-size: 0.9rem; font-weight: bold; line-height: 1.3;
+        font-size: 0.9rem; font-weight: bold; line-height: 1.3; color: #222;
         white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px;
     }
 
     /* === 右侧内容 === */
     .right-content { flex: 1; display: flex; flex-direction: column; gap: 35px; }
 
-    /* 1. 字体优化 */
     .hello-text {
         font-family: 'Quicksand', sans-serif;
-        font-size: 4.5rem; /* 大号 */
-        font-weight: 700; margin: 0; line-height: 1.1;
-        color: #fff; text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        font-size: 4.5rem; font-weight: 700; margin: 0; line-height: 1.1;
+        color: #333; /* 深黑字 */
+        /* 白色光晕阴影 */
+        text-shadow: 0 2px 20px rgba(255,255,255, 0.8);
     }
     .name-highlight {
         font-family: 'Pacifico', cursive;
-        font-size: 6.5rem; /* 超大号 */
-        font-weight: 400; display: block; /* 名字换行显示或者连着看你喜好，这里block会让它独占一行更霸气，若想同行把block删掉 */
+        font-size: 6.5rem; font-weight: 400; display: block; 
         margin-top: 10px;
         background: linear-gradient(120deg, #08e39a, #00b4d8);
         -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        filter: drop-shadow(0 2px 3px rgba(0,0,0,0.1)); /* 阴影变浅 */
     }
 
-    .role-text { font-size: 1.3rem; margin: 15px 0; color: #ddd; font-weight: 600; }
+    .role-text { font-size: 1.3rem; margin: 15px 0; color: #555; font-weight: 700; }
     .desc-text {
-        font-size: 1.1rem; font-style: italic; color: #ccc;
-        border-left: 4px solid #08e39a; padding-left: 15px;
+        font-size: 1.1rem; font-style: italic; color: #444; background: rgba(255,255,255,0.5);
+        border-left: 4px solid #08e39a; padding: 10px 15px; border-radius: 8px;
     }
     .tag-highlight { color: #08e39a; font-weight: bold; }
 
-    /* 社交按钮 */
+    /* 社交按钮 (日间适配) */
     .social-row { display: flex; gap: 15px; }
     .social-btn {
-        width: 50px; height: 50px; background: rgba(255,255,255,0.1);
+        width: 50px; height: 50px; 
+        background: rgba(0,0,0,0.05); /* 浅灰底 */
         border-radius: 12px; display: flex; align-items: center; justify-content: center;
-        color: #fff; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.05);
+        color: #333; /* 深色图标 */
+        transition: all 0.3s; border: 1px solid rgba(0,0,0,0.05);
     }
     .social-btn svg { width: 28px; height: 28px; }
-    .social-btn:hover { background: rgba(255,255,255,0.25); transform: translateY(-5px); color: #08e39a; }
+    .social-btn:hover { 
+        background: #fff; transform: translateY(-5px); color: #08e39a; 
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
 
-    /* 2. GitHub Chart 裁切优化 */
+    /* GitHub Chart */
     .github-chart-box {
-        padding: 0; /* 去除内边距 */
-        height: 160px; /* 限制高度 */
-        overflow: hidden; /* 隐藏溢出部分（即裁掉文字） */
-        position: relative;
+        padding: 0; height: 160px; overflow: hidden; position: relative;
         display: flex; align-items: center; justify-content: center;
+        background: rgba(255,255,255,0.7); /* 稍微不透明一点，确保格子清晰 */
     }
     .gh-chart-img {
-        width: 105%; /* 放大一点点以填充边缘 */
-        /* 关键：使用 margin 或 transform 移动图片，把左边和上边的文字挤出去 */
-        margin-top: -35px; 
-        margin-left: -10px;
-        margin-bottom: -10px; /* 底部文字也藏起来 */
-        min-width: 600px;
+        width: 105%; margin-top: -35px; margin-left: -10px; margin-bottom: -10px; min-width: 600px;
+        /* 如果格子在白底上看不清，可以加一点对比度 */
+        filter: contrast(1.05);
     }
 
-    /* 3. 学术生涯 (替换 Site) */
+    /* 学术生涯 */
     .site-section-title {
-        font-size: 1.5rem; font-weight: 800; margin-bottom: 20px;
+        font-size: 1.5rem; font-weight: 800; margin-bottom: 20px; color: #222;
         display: flex; align-items: center; gap: 10px;
-        text-shadow: 0 2px 5px rgba(0,0,0,0.5);
     }
-    .edu-container {
-        display: grid; grid-template-columns: 1fr 1fr; gap: 25px;
-    }
+    .edu-container { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
     .edu-card {
         position: relative; overflow: hidden;
         display: flex; flex-direction: column; justify-content: space-between;
         min-height: 180px; transition: transform 0.3s, box-shadow 0.3s;
         border-left: 5px solid transparent;
+        background: rgba(255, 255, 255, 0.7); /* 乳白卡片 */
     }
-    .edu-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 40px rgba(0,0,0,0.3);
-    }
+    .edu-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.1); }
 
-    /* 矿大样式 */
-    .cumt-style { border-left-color: #2b7de0; background: linear-gradient(135deg, rgba(30,30,30,0.6), rgba(43, 125, 224, 0.1)); }
-    /* 华师大样式 */
-    .ecnu-style { border-left-color: #b5179e; background: linear-gradient(135deg, rgba(30,30,30,0.6), rgba(181, 23, 158, 0.1)); }
+    .cumt-style { border-left-color: #2b7de0; background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(43, 125, 224, 0.1)); }
+    .ecnu-style { border-left-color: #b5179e; background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(181, 23, 158, 0.1)); }
 
     .edu-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-    .edu-icon { font-size: 1.8rem; }
     .edu-years { 
-        font-size: 0.9rem; background: rgba(0,0,0,0.3); 
-        padding: 4px 8px; border-radius: 6px; color: #fff; font-family: monospace;
+        font-size: 0.9rem; background: rgba(0,0,0,0.05); 
+        padding: 4px 8px; border-radius: 6px; color: #555; font-family: monospace; font-weight: bold;
     }
-    .edu-body h3 { font-size: 1.6rem; margin: 0; font-weight: 800; }
-    .edu-body h4 { font-size: 1.1rem; margin: 5px 0 10px; color: #08e39a; font-weight: 600; }
-    .edu-body p { font-size: 0.9rem; color: #ccc; line-height: 1.5; margin: 0; }
+    .edu-body h3 { font-size: 1.6rem; margin: 0; font-weight: 800; color: #222; }
+    .edu-body h4 { font-size: 1.1rem; margin: 5px 0 10px; color: #08e39a; font-weight: 700; }
+    .edu-body p { font-size: 0.9rem; color: #555; line-height: 1.5; margin: 0; font-weight: 500;}
+    .edu-bg-icon { position: absolute; right: -10px; bottom: -10px; font-size: 6rem; opacity: 0.1; pointer-events: none; color: #000; }
 
-    .edu-bg-icon {
-        position: absolute; right: -10px; bottom: -10px;
-        font-size: 6rem; opacity: 0.05; pointer-events: none;
-    }
-
-    /* 4. 创意 Dashboard Footer */
+    /* Dashboard Footer (日间) */
     .stats-dashboard {
-        background: rgba(0, 0, 0, 0.6);
+        background: rgba(255, 255, 255, 0.7); /* 乳白 */
         backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-        border-radius: 20px;
-        padding: 15px 40px;
+        border-radius: 20px; padding: 15px 40px;
         display: flex; justify-content: space-around; align-items: center;
-        border: 1px solid rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.8);
         margin-top: 20px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     }
-    .stat-item { display: flex; align-items: center; gap: 15px; }
-    .stat-icon { font-size: 2rem; }
-    .stat-info { display: flex; flex-direction: column; }
-    .stat-label { font-size: 0.75rem; text-transform: uppercase; color: #888; letter-spacing: 1px; }
-    .stat-value { font-size: 1.4rem; font-weight: 800; color: #fff; font-family: 'Quicksand', monospace; }
-    .stat-divider { width: 1px; height: 40px; background: rgba(255,255,255,0.1); }
+    .stat-label { font-size: 0.75rem; text-transform: uppercase; color: #666; letter-spacing: 1px; font-weight: 700;}
+    .stat-value { font-size: 1.4rem; font-weight: 800; color: #222; font-family: 'Quicksand', monospace; }
+    .stat-divider { width: 1px; height: 40px; background: rgba(0,0,0,0.1); }
 
     /* 移动端适配 */
     @media (max-width: 850px) {
         .profile-container { flex-direction: column; margin-top: 20px; }
         .left-sidebar { width: 100%; }
-        .name-highlight { font-size: 4rem; } /* 移动端名字稍微小一点 */
+        .name-highlight { font-size: 4rem; } 
         .edu-container { grid-template-columns: 1fr; }
         .stats-dashboard { flex-direction: column; gap: 20px; padding: 20px; }
         .stat-divider { width: 100%; height: 1px; }
-        .gh-chart-img { width: 150%; margin-left: -20px; } /* 移动端拉更大 */
+        .gh-chart-img { width: 150%; margin-left: -20px; } 
     }
 </style>
 
-<!-- 
-  =========================================
-  JavaScript 逻辑
-  =========================================
--->
+<!-- JS 脚本 (保持不变) -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-
-        // 1. 随机背景 (保持不变)
         var bgElement = document.getElementById('bg-layer');
         var baseUrl = "https://cdn.jsdelivr.net/gh/4utumny/4utumny.github.io@main/docs/images/";
-        var images = [
-             "beijing1.jpg", "beijing2.jpg", "beijing3.jpg", 
-             "beijing4.jpg", "beijing5.jpg", "beijing6.jpg"
-        ];
+        var images = [ "beijing1.jpg", "beijing2.jpg", "beijing3.jpg", "beijing4.jpg", "beijing5.jpg", "beijing6.jpg" ];
         var randomIndex = Math.floor(Math.random() * images.length);
         bgElement.style.backgroundImage = "url('" + baseUrl + images[randomIndex] + "')";
 
-        // 2. 自动化获取 GitHub 最近动态 (无需插件)
-        // 直接调用 GitHub Public API 获取本仓库的最后一次提交
         fetch('https://api.github.com/repos/4utumny/4utumny.github.io/commits?per_page=1')
             .then(response => response.json())
             .then(data => {
@@ -2300,16 +2283,10 @@
                     const commit = data[0];
                     const msg = commit.commit.message;
                     const date = new Date(commit.commit.author.date);
-
-                    // 格式化日期 (YYYY-MM-DD)
-                    const dateStr = date.getFullYear() + '-' + 
-                                    String(date.getMonth() + 1).padStart(2, '0') + '-' + 
-                                    String(date.getDate()).padStart(2, '0');
-
-                    // 更新 DOM
+                    const dateStr = date.getFullYear() + '-' + String(date.getMonth() + 1).padStart(2, '0') + '-' + String(date.getDate()).padStart(2, '0');
                     document.getElementById('last-commit-date').innerText = dateStr;
                     document.getElementById('last-commit-msg').innerText = msg;
-                    document.getElementById('last-commit-msg').title = msg; // 鼠标悬停显示完整信息
+                    document.getElementById('last-commit-msg').title = msg;
                 }
             })
             .catch(err => {
@@ -2318,18 +2295,15 @@
             });
     });
 
-    // 3. 运行时间计时器
     function updateTime() {
         var date = new Date();
         var now = date.getTime();
-        var startDate = new Date("2025/08/31 00:00:00"); // 替换为你的实际建站日期
+        var startDate = new Date("2025/08/31 00:00:00"); 
         var diff = now - startDate.getTime();
-
         if (diff < 0) { document.getElementById("web-time").innerHTML = "Coming Soon"; return; }
-
         var d = Math.floor(diff / (24 * 3600 * 1000));
         document.getElementById("web-time").innerHTML = d + " Days";
-        setTimeout(updateTime, 60000); // 每分钟更新一次
+        setTimeout(updateTime, 60000); 
     }
     updateTime();
 </script>
