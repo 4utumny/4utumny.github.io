@@ -7,4 +7,3 @@ git commit -m "autocommit: %commitMessage% - %commitDate%"
 @REM git commit -m "auto-commit - %commitDate%"
 git push -u origin main
 @REM git push -u origin master --force
-pause
