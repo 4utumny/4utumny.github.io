@@ -1975,9 +1975,9 @@
 
     <!-- 左侧：个人信息与状态 -->
     <div class="left-sidebar">
-        <!-- 头像 (纯圆设计) -->
+        <!-- 头像 (放大优化) -->
         <div class="avatar-wrapper">
-            <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/touxiang.png" data-title="Avatar" data-desc-position="bottom"><img src="images/touxiang.png" alt="Avatar" class="avatar-circle" onerror="this.src='https://ui-avatars.com/api/?name=4u&amp;background=0D8ABC&amp;color=fff'"></a>
+            <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/touxiang.png" data-title="Avatar" data-desc-position="bottom"><img src="images/touxiang.png" alt="Avatar" class="avatar-circle" onerror="this.src='https://ui-avatars.com/api/?name=4u&amp;background=0D8ABC&amp;color=fff&amp;size=256'"></a>
         </div>
 
         <!-- 简介 -->
@@ -1992,14 +1992,17 @@
             </div>
         </div>
 
-        <!-- 状态更新 -->
+        <!-- 状态更新 (自动获取) -->
         <div class="card status-box">
             <div class="box-header">
                 <span class="box-title">⚡ My Status</span>
                 <span onclick="location.href='status/'" class="more-btn" title="查看更多">More+</span>
             </div>
             <div id="status-list" class="status-list">
-                <!-- JS 将在这里渲染内容 -->
+                <!-- 骨架屏 Loading 效果 -->
+                <div class="status-loading" style="padding:10px; color:var(--text-muted); font-size:0.85rem;">
+                    Loading updates...
+                </div>
             </div>
         </div>
     </div>
@@ -2032,12 +2035,11 @@
             </a>
         </div>
 
-        <!-- 2. GitHub 贡献墙 (已修复: 使用 SVG 图片服务替代不稳定 JS) -->
+        <!-- 2. GitHub 贡献墙 -->
         <div class="card graph-card">
             <div class="graph-header">
                 <span class="graph-title">🌱 GitHub Contributions</span>
             </div>
-            <!-- 使用 ghchart 服务，颜色设为绿色系 (216e39)，这里会自动获取你GitHub的所有数据 -->
             <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="https://ghchart.rshah.org/216e39/4utumny" data-title="4utumny's Github chart" data-desc-position="bottom"><img src="https://ghchart.rshah.org/216e39/4utumny" alt="4utumny's Github chart" class="gh-chart-img"></a>
         </div>
 
@@ -2143,33 +2145,34 @@
 /* === 左侧栏 === */
 .left-sidebar {
     width: 280px;
-    flex-shrink: 0; /* 禁止左侧栏被挤压 */
+    flex-shrink: 0;
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-/* 修复1：头像样式调整 */
+/* === 修复1：头像样式优化 === */
 .avatar-wrapper {
     display: flex;
     justify-content: center;
-    padding: 10px 0;
-    flex-shrink: 0; /* 防止容器被挤压 */
+    padding: 5px 0 15px 0; /* 底部增加留白 */
+    flex-shrink: 0;
 }
 .avatar-circle {
-    width: 120px; 
-    height: 120px; 
-    /* 关键修复：强制1:1比例，防止变成椭圆 */
+    /* 尺寸由 120px 增加到 150px */
+    width: 150px; 
+    height: 150px; 
     aspect-ratio: 1 / 1; 
     border-radius: 50%;
-    object-fit: cover; /* 保证图片填充裁剪，不变形 */
-    border: 4px solid var(--md-default-bg-color);
-    box-shadow: 0 0 0 2px var(--accent-color);
-    transition: transform 0.3s ease;
+    object-fit: cover;
+    border: 5px solid var(--md-default-bg-color); /* 边框稍微加粗 */
+    box-shadow: 0 0 0 2px var(--accent-color), 0 8px 20px rgba(0,0,0,0.1); /* 增加阴影层次 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: block;
 }
 .avatar-circle:hover {
     transform: rotate(5deg) scale(1.05);
+    box-shadow: 0 0 0 3px var(--accent-color), 0 12px 24px rgba(0,0,0,0.15);
 }
 
 /* 个人信息 */
@@ -2200,7 +2203,10 @@
     display: flex;
     flex-direction: column; 
     gap: 4px;
+    animation: fadeIn 0.5s ease;
 }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
 .status-item:first-child { border-left-color: var(--accent-color); }
 .s-text { font-size: 0.9rem; color: var(--text-main); line-height: 1.4; font-weight: 500; }
 .s-date { font-size: 0.75rem; color: var(--text-muted); background: var(--md-default-fg-color--lightest); padding: 1px 6px; border-radius: 4px; width: fit-content; }
@@ -2259,7 +2265,7 @@
 .social-btn:hover { background: var(--accent-color); color: #fff; transform: translateY(-3px); }
 .social-btn svg { width: 22px; height: 22px; }
 
-/* 修复2：贡献图样式 */
+/* 贡献图样式 */
 .graph-card { padding: 15px; overflow: hidden; }
 .graph-header { margin-bottom: 10px; }
 .graph-title { font-weight: bold; color: var(--text-muted); font-size: 0.9rem; }
@@ -2267,10 +2273,8 @@
     width: 100%;
     height: auto;
     display: block;
-    /* 适配暗黑模式，稍微调整图片对比度 */
     border-radius: 4px;
 }
-/* 暗黑模式下反转颜色或者调整透明度，ghchart 本身背景是透明的 */
 [data-md-color-scheme="slate"] .gh-chart-img {
     filter: hue-rotate(180deg) invert(1) brightness(0.9);
 }
@@ -2320,27 +2324,69 @@
 <script>
 document.addEventListener("DOMContentLoaded", function() {
 
-    // Status 列表 (静态数据)
-    const statusData = [
-        { date: "2024-05-01", text: "Writing my final thesis, feeling a bit stressed! 📝" },
-        { date: "2024-04-28", text: "Refactoring my personal website homepage. 🎨" },
-        { date: "2024-04-20", text: "Started learning Vue.js 3 Composition API. 🚀" },
-        { date: "2024-04-15", text: "Went for a 50km cycling trip around the lake. 🚴‍♂️" }
-    ];
+    // === 自动获取 Status 逻辑 ===
+    // 原理：status.md 会被 MkDocs 编译成 HTML。
+    // 我们在这里用 fetch 请求那个页面，解析 HTML，把前 4 条拿过来。
+    async function loadStatus() {
+        const statusContainer = document.getElementById('status-list');
+        if (!statusContainer) return;
 
-    const statusContainer = document.getElementById('status-list');
-    if(statusContainer){
-        statusData.slice(0, 4).forEach(item => {
-            let div = document.createElement('div');
-            div.className = 'status-item';
-            div.innerHTML = `<span class="s-text">${item.text}</span><span class="s-date">📅 ${item.date}</span>`;
-            statusContainer.appendChild(div);
-        });
+        try {
+            // 请求 status 页面 (相对路径, 兼容本地和 GitHub Pages)
+            const response = await fetch('status/');
+            if (!response.ok) throw new Error("Status page not found");
+
+            // 解析 HTML
+            const text = await response.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(text, 'text/html');
+
+            // 查找 .timeline-page 下的 li 元素 (status.md 中定义的结构)
+            // 选择器对应 status.md 渲染后的 HTML 结构
+            const listItems = doc.querySelectorAll('.timeline-page ul li');
+
+            if (listItems.length > 0) {
+                statusContainer.innerHTML = ''; // 清空 Loading
+
+                // 取前 4 条
+                for(let i=0; i < Math.min(4, listItems.length); i++) {
+                    const li = listItems[i];
+                    // status.md 格式: * **2024-05-01** : Content...
+                    // 编译后: <li><strong>2024-05-01</strong> : Content...</li>
+
+                    const dateEl = li.querySelector('strong');
+                    let date = dateEl ? dateEl.textContent.trim() : 'Unknown';
+
+                    // 获取内容文本：去掉日期部分的文本
+                    // cloneNode 是为了不破坏原 DOM，虽然后面不用了
+                    let content = li.textContent.trim();
+                    if(dateEl) {
+                        // 简单的替换逻辑，把日期和冒号去掉
+                        content = content.replace(date, '').replace(/^[\s:]+/, '').trim();
+                    }
+
+                    // 创建 DOM
+                    let div = document.createElement('div');
+                    div.className = 'status-item';
+                    div.innerHTML = `<span class="s-text">${content}</span><span class="s-date">📅 ${date}</span>`;
+                    statusContainer.appendChild(div);
+                }
+            } else {
+                statusContainer.innerHTML = '<div style="padding:10px">暂无动态</div>';
+            }
+
+        } catch (err) {
+            console.error("加载状态失败:", err);
+            // 失败时回退到手动数据或错误提示
+            statusContainer.innerHTML = '<div style="padding:10px; font-size:0.8rem; color:gray">无法加载动态，请检查网络或 status.md 路径。</div>';
+        }
     }
+
+    loadStatus();
 
     // 网站运行时间
     function updateTime() {
-        var startDate = new Date("2022/01/01 00:00:00"); // 修改为你的时间
+        var startDate = new Date("2022/01/01 00:00:00"); 
         var now = new Date();
         var diff = now - startDate;
         var days = Math.floor(diff / (1000 * 60 * 60 * 24));
