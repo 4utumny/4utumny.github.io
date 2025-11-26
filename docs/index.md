@@ -10,387 +10,429 @@ nostatistics: true
 
 <!-- 
   =========================================
-  HTML 结构区域：阳光仪表盘风格
+  HTML 结构：Zyyo 风格个人仪表盘 (真实数据版)
   =========================================
 -->
-<div id="hero-background" class="hero-bg">
-    <!-- 内容主容器：改为白色磨砂面板 -->
-    <div class="dashboard-container">
+
+<!-- 背景层 -->
+<div id="bg-layer"></div>
+<div id="bg-overlay"></div>
+
+<!-- 主容器 -->
+<div class="profile-container">
+    
+    <!-- 左侧栏：个人信息 + 状态 -->
+    <div class="left-sidebar">
+        <!-- 1. 头像卡片 -->
+        <div class="avatar-card">
+            <!-- 头像路径：使用相对路径，请确保 docs/images/autumn.png 存在 -->
+            <img src="images/autumn.png" alt="Avatar" class="avatar-img" onerror="this.src='https://ui-avatars.com/api/?name=4u&background=0D8ABC&color=fff'">
+            <div class="status-indicator"></div>
+        </div>
+
+        <!-- 2. 信息卡片 (地址/组织) -->
+        <div class="glass-box info-box">
+            <div class="info-row">
+                <span class="icon">📍</span>
+                <span>China</span>
+            </div>
+            <div class="info-row">
+                <span class="icon">🎓</span>
+                <span>Student</span>
+            </div>
+        </div>
+
+        <!-- 3. 标签云卡片 -->
+        <div class="glass-box tags-box">
+            <span class="tag-badge">全栈开发</span>
+            <span class="tag-badge">Python</span>
+            <span class="tag-badge">网瘾少年</span>
+            <span class="tag-badge">MkDocs</span>
+            <span class="tag-badge">熬夜冠军</span>
+            <span class="tag-badge">骑行</span>
+        </div>
+
+        <!-- 4. 时间轴/状态 (左下角) -->
+        <div class="glass-box timeline-box">
+            <div class="timeline-item">
+                <div class="dot active"></div>
+                <div class="content">
+                    <span class="time">Now</span>
+                    <span class="text">Coding...</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="dot"></div>
+                <div class="content">
+                    <span class="time">2025</span>
+                    <span class="text">Hello World</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 右侧栏：主内容 -->
+    <div class="right-content">
         
-        <!-- 上半部分：主要内容区 -->
-        <div class="dashboard-content">
-            
-            <!-- 左侧：文字信息 -->
-            <div class="left-section">
-                <div class="badge">✨ Welcome</div>
-                <h1 class="main-title">4utumny's<br><span class="highlight">Garden</span></h1>
-                
-                <!-- 语录/Slogan -->
-                <div class="quote-box">
-                    <span class="quote-icon">❝</span>
-                    <p class="typewriter-text">And you my, my friend, you are the real hero!</p>
-                </div>
-            </div>
-
-            <!-- 右侧：视觉组件 (装饰性，解决单调问题) -->
-            <div class="right-section">
-                <!-- 组件1：日期卡片 -->
-                <div class="widget-card date-card">
-                    <div id="current-month" class="month">Dec</div>
-                    <div id="current-day" class="day">01</div>
-                    <div id="current-weekday" class="weekday">Sunday</div>
-                </div>
-
-                <!-- 组件2：头像/Logo 展示 (你可以替换这里的图片) -->
-                <!-- 如果没有头像，可以放一个喜欢的图标或者这里保留为空 -->
-                <div class="widget-card profile-card">
-                    <div class="profile-img-placeholder">
-                        <span>Rango</span>
-                    </div>
-                    <div class="profile-decoration"></div>
-                </div>
-            </div>
+        <!-- 1. 欢迎语 -->
+        <div class="welcome-section">
+            <h1 class="hello-text">Hello I'm <span class="name-highlight">4utumny</span></h1>
+            <p class="role-text">👨‍💻 Independent Developer & Student</p>
+            <p class="desc-text">📝 The only way to do <span class="tag-highlight">great</span> work is to <span class="tag-highlight">love</span> what you do.</p>
         </div>
 
-        <!-- 分割线 -->
-        <div class="divider-line"></div>
+        <!-- 2. 社交链接按钮组 -->
+        <div class="social-row">
+            <!-- Github -->
+            <a href="https://github.com/4utumny" target="_blank" class="social-btn" title="GitHub">
+                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33c.85 0 1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+            </a>
+            <!-- Email -->
+            <a href="mailto:1657636021@qq.com" class="social-btn" title="Email: 1657636021@qq.com">
+                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5l-8-5V6l8 5l8-5v2z"/></svg>
+            </a>
+            <!-- QQ -->
+            <a href="tencent://message/?uin=1657636021&Site=&Menu=yes" class="social-btn" title="QQ: 1657636021">
+                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.22 12.11c-.55 0-.96.48-.9 1.06c.3 2.65 2.56 4.71 5.34 4.71c2.4 0 4.36-1.57 5.06-3.76c.16-.52-.25-1.02-.79-1.02h-.13c-.41 0-.77.26-.91.65c-.47 1.22-1.68 2.06-3.05 2.06c-1.64 0-3.01-1.21-3.23-2.82c-.04-.32-.34-.58-.69-.58h-.7zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8c0-.29.02-.58.05-.86c1.3-.23 2.37-1.15 2.81-2.39c.67.31 1.39.46 2.14.43c1.37-.06 2.62-.68 3.53-1.65c.03.03.05.06.08.09c1.07 1.07 2.69 1.48 4.14 1.12c.51 1.76 1.15 3.32 2.22 4.41c-1.42 3.96-5.18 6.85-9.62 6.85h-.35z"/></svg>
+            </a>
+            <!-- 网易云音乐 -->
+            <a href="https://music.163.com/#/user/home?id=1388893738" target="_blank" class="social-btn" title="网易云音乐">
+                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm4.66 11.23c-1.14 1.25-2.73 2.1-4.66 2.1c-3.1 0-5.68-2.1-6.28-5.01c-.13-.62.35-1.21.98-1.21h.06c.49 0 .91.35 1.01.83c.36 1.76 1.91 3.03 3.76 3.03c1.05 0 1.98-.44 2.65-1.15c.34-.36.91-.37 1.28-.02c.39.37.42.99.06 1.39V13.23h.14zM16 8c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2z"/></svg>
+            </a>
+        </div>
 
-        <!-- 下半部分：统计数据 (横向排列) -->
-        <div class="dashboard-footer">
-            <div class="stat-item">
-                <span class="stat-label">Running</span>
-                <span id="web-time" class="stat-value">Loading...</span>
+        <!-- 3. 真实 GitHub 贡献图 (GitHub Activity) -->
+        <div class="glass-box" style="padding: 20px;">
+            <div class="site-section-title" style="margin-bottom: 15px;">
+                <span class="icon">📊</span> GitHub Activity
             </div>
-            
-            <!-- 竖线分隔 -->
-            <div class="stat-separator"></div>
+            <!-- 使用 ghchart 服务获取真实数据，颜色代码 08e39a 对应你的主题绿 -->
+            <a href="https://github.com/4utumny" target="_blank" style="display: block;">
+                <img src="https://ghchart.rshah.org/08e39a/4utumny" alt="4utumny's Github Chart" style="width: 100%; display: block; border-radius: 4px;">
+            </a>
+        </div>
 
-            <div class="stat-item">
-                <span class="stat-label">Visitors</span>
-                <span id="busuanzi_container_site_uv" style="display:none">
-                   <span id="busuanzi_value_site_uv" class="stat-value">--</span>
-                </span>
+        <!-- 4. 底部站点导航 -->
+        <div class="site-links-row">
+            <div class="site-section-title">
+                <span class="icon">📑</span> Site
             </div>
-
-            <div class="stat-separator"></div>
-
-            <div class="stat-item">
-                <span class="stat-label">Views</span>
-                <span id="busuanzi_container_site_pv" style="display:none">
-                   <span id="busuanzi_value_site_pv" class="stat-value">--</span>
-                </span>
+            <div class="link-cards">
+                <a href="./about/" class="link-card purple">
+                    <span class="card-title">About</span>
+                    <span class="card-desc">关于我</span>
+                </a>
+                <a href="./tags/" class="link-card green">
+                    <span class="card-title">Tags</span>
+                    <span class="card-desc">文章标签</span>
+                </a>
+                <a href="./archives/" class="link-card blue">
+                    <span class="card-title">Archive</span>
+                    <span class="card-desc">归档</span>
+                </a>
             </div>
         </div>
+        
+        <!-- 底部简单统计 -->
+        <div class="footer-simple">
+            <span id="web-time">Loading...</span> | 
+            <span id="busuanzi_container_site_uv" style="display:none">UV:<span id="busuanzi_value_site_uv">--</span></span>
+        </div>
+
     </div>
 </div>
 
 <!-- 
   =========================================
-  CSS 样式区域
+  CSS 样式
   =========================================
 -->
 <style>
-    /* 1. 全屏背景 */
-    .hero-bg {
+    /* 全局重置 */
+    .md-content__inner { margin: 0 !important; padding: 0 !important; max-width: 100% !important; }
+    .md-main__inner { margin: 0 !important; }
+    
+    /* 1. 背景层设置 */
+    #bg-layer {
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
+        top: 0; left: 0; width: 100%; height: 100%;
         z-index: 0;
-        background-color: #f0f0f0; /* 浅色底，防闪烁 */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background-image 0.8s ease-in-out;
+        background-size: cover;
+        background-position: center;
+        transition: background-image 0.5s ease;
+    }
+    
+    /* 2. 背景遮罩 (微虚化 + 压暗) */
+    #bg-overlay {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        z-index: 1;
+        /* 这里控制虚化程度：blur(5px) */
+        backdrop-filter: blur(5px); 
+        -webkit-backdrop-filter: blur(5px);
+        /* 这里控制压暗程度：0.2 表示 20% 黑色 */
+        background: rgba(0, 0, 0, 0.2); 
     }
 
-    /* 2. 核心面板：白色磨砂玻璃 */
-    .dashboard-container {
+    /* 3. 布局容器 */
+    .profile-container {
         position: relative;
-        width: 90%;
-        max-width: 900px;
-        background: rgba(255, 255, 255, 0.75); /* 白色，高透明度 */
-        backdrop-filter: blur(20px);           /* 强模糊，像毛玻璃 */
-        -webkit-backdrop-filter: blur(20px);
-        border-radius: 24px;
-        border: 1px solid rgba(255, 255, 255, 0.8);
-        box-shadow: 
-            0 20px 50px rgba(0, 0, 0, 0.1), /* 柔和的阴影 */
-            inset 0 0 0 1px rgba(255, 255, 255, 0.5); /* 内部高光描边 */
-        padding: 40px;
+        z-index: 2;
+        display: flex;
+        max-width: 1100px;
+        margin: 8vh auto;
+        gap: 30px;
+        padding: 20px;
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        color: #fff;
+    }
+
+    /* ===== 左侧栏 ===== */
+    .left-sidebar {
+        width: 280px;
         display: flex;
         flex-direction: column;
-        animation: floatUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-
-    /* 3. 上半部分布局 */
-    .dashboard-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 30px;
-        flex-wrap: wrap; /* 移动端自动换行 */
         gap: 20px;
     }
 
-    /* 左侧文字区 */
-    .left-section {
-        flex: 2;
-        min-width: 280px;
-        text-align: left;
-    }
-
-    .badge {
-        display: inline-block;
-        padding: 6px 12px;
-        background: rgba(255, 165, 0, 0.15); /* 淡橙色背景 */
-        color: #ff8c00; /* 深橙色文字 */
-        border-radius: 20px;
-        font-size: 0.85rem;
-        font-weight: bold;
-        margin-bottom: 15px;
-    }
-
-    .main-title {
-        font-size: 3.5rem;
-        line-height: 1.1;
-        color: #2c3e50; /* 深灰蓝，显得高级 */
-        font-weight: 800;
-        margin: 0 0 20px 0;
-        font-family: 'Georgia', serif; /* 衬线体，更优雅 */
-    }
-
-    .highlight {
-        color: rgba(8, 227, 154, 0.9); /* 你的主题绿 */
+    .avatar-card {
+        text-align: center;
         position: relative;
-        z-index: 1;
+        margin-bottom: 10px;
     }
-    /* 文字下划线装饰 */
-    .highlight::after {
-        content: '';
-        position: absolute;
-        bottom: 5px;
-        left: 0;
-        width: 100%;
-        height: 12px;
-        background: rgba(8, 227, 154, 0.3);
-        z-index: -1;
-        border-radius: 4px;
+    .avatar-img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        transition: transform 0.4s ease;
+    }
+    .avatar-img:hover {
+        transform: rotate(360deg);
     }
 
-    .quote-box {
-        position: relative;
-        padding-left: 20px;
-        color: #555;
-    }
-    .quote-icon {
-        position: absolute;
-        left: -5px;
-        top: -10px;
-        font-size: 3rem;
-        color: rgba(0, 0, 0, 0.05);
-    }
-    .typewriter-text {
-        font-size: 1.2rem;
-        font-style: italic;
-        margin: 0;
-        color: #444;
-        font-family: sans-serif;
-    }
-
-    /* 右侧组件区 */
-    .right-section {
-        flex: 1;
-        display: flex;
-        gap: 15px;
-        justify-content: flex-end;
-    }
-
-    .widget-card {
-        background: #fff;
+    /* 通用磨砂玻璃盒子 */
+    .glass-box {
+        background: rgba(30, 30, 30, 0.5); /* 深色半透明背景 */
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 16px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        padding: 20px;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .info-box {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        transition: transform 0.3s ease;
+        gap: 15px;
     }
-    .widget-card:hover {
-        transform: translateY(-5px);
-    }
-
-    /* 日期组件 */
-    .date-card {
-        width: 100px;
-        height: 120px;
-        padding: 10px;
-        background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
-    }
-    .month { font-size: 0.9rem; color: #888; text-transform: uppercase; letter-spacing: 1px; }
-    .day { font-size: 2.5rem; font-weight: bold; color: #2c3e50; line-height: 1; margin: 5px 0; }
-    .weekday { font-size: 0.8rem; color: rgba(8, 227, 154, 1); font-weight: bold; }
-
-    /* 头像/Logo占位组件 */
-    .profile-card {
-        width: 100px;
-        height: 120px;
-        background: linear-gradient(135deg, rgba(8, 227, 154, 0.1) 0%, rgba(8, 227, 154, 0.05) 100%);
-        position: relative;
-        overflow: hidden;
-    }
-    .profile-img-placeholder {
-        width: 60px;
-        height: 60px;
-        background: #fff;
-        border-radius: 50%;
+    .info-row {
         display: flex;
         align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        color: rgba(8, 227, 154, 1);
-        font-size: 1.2rem;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        z-index: 2;
-    }
-    /* 装饰圆圈 */
-    .profile-decoration {
-        position: absolute;
-        top: -20px;
-        right: -20px;
-        width: 80px;
-        height: 80px;
-        background: rgba(8, 227, 154, 0.2);
-        border-radius: 50%;
-        z-index: 1;
+        gap: 10px;
+        font-size: 0.95rem;
+        color: #e0e0e0;
     }
 
-    /* 4. 底部统计区 */
-    .divider-line {
-        height: 1px;
-        background: rgba(0,0,0,0.05);
-        margin-bottom: 20px;
-        width: 100%;
-    }
-
-    .dashboard-footer {
+    .tags-box {
         display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        color: #666;
-        font-size: 0.9rem;
         flex-wrap: wrap;
+        gap: 8px;
+    }
+    .tag-badge {
+        background: rgba(255, 255, 255, 0.15);
+        padding: 4px 10px;
+        border-radius: 8px;
+        font-size: 0.8rem;
+        color: #ddd;
     }
 
-    .stat-item {
+    .timeline-box {
+        margin-top: auto; /* 推到底部 */
+    }
+    .timeline-item {
         display: flex;
-        flex-direction: column; /* 上下排列标签和数值 */
-        margin-right: 0;
+        gap: 15px;
+        margin-bottom: 15px;
+        position: relative;
     }
-    
-    .stat-label {
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        color: #999;
-        margin-bottom: 2px;
+    .timeline-item:last-child { margin-bottom: 0; }
+    /* 连接线 */
+    .timeline-item:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        left: 5px;
+        top: 15px;
+        bottom: -20px;
+        width: 2px;
+        background: rgba(255, 255, 255, 0.2);
     }
-    
-    .stat-value {
+    .dot {
+        width: 12px;
+        height: 12px;
+        background: #888;
+        border-radius: 50%;
+        margin-top: 5px;
+    }
+    .dot.active { background: #08e39a; box-shadow: 0 0 10px #08e39a; }
+    .content { display: flex; flex-direction: column; }
+    .time { font-size: 0.75rem; color: #aaa; }
+    .text { font-size: 0.9rem; font-weight: bold; }
+
+    /* ===== 右侧内容 ===== */
+    .right-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .welcome-section {
+        margin-top: 20px;
+    }
+    .hello-text {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin: 0;
+        line-height: 1.2;
+        color: #fff;
+        text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+    .name-highlight {
+        background: linear-gradient(120deg, #08e39a, #00b4d8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .role-text {
+        font-size: 1.2rem;
+        margin: 10px 0;
+        color: #ccc;
+    }
+    .desc-text {
+        font-size: 1rem;
+        font-style: italic;
+        background: rgba(0,0,0,0.3);
+        padding: 10px 15px;
+        border-radius: 8px;
+        border-left: 4px solid #08e39a;
+        display: inline-block;
+    }
+    .tag-highlight {
+        background: rgba(8, 227, 154, 0.2);
+        padding: 0 4px;
+        border-radius: 4px;
+        color: #08e39a;
+    }
+
+    /* 社交按钮 */
+    .social-row {
+        display: flex;
+        gap: 15px;
+    }
+    .social-btn {
+        width: 45px;
+        height: 45px;
+        background: rgba(255,255,255,0.1);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        transition: all 0.3s;
+        border: 1px solid rgba(255,255,255,0.05);
+    }
+    .social-btn svg { width: 24px; height: 24px; }
+    .social-btn:hover {
+        background: rgba(255,255,255,0.2);
+        transform: translateY(-3px);
+        color: #08e39a;
+    }
+
+    /* 站点链接 */
+    .site-links-row {
+        margin-top: auto;
+    }
+    .site-section-title {
+        font-size: 1.2rem;
         font-weight: bold;
-        color: #333;
-        font-family: 'Roboto Mono', monospace;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
     }
-
-    .stat-separator {
-        width: 1px;
-        height: 25px;
-        background: rgba(0,0,0,0.1);
-        margin: 0 25px;
+    .link-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
     }
+    .link-card {
+        background: rgba(40, 40, 40, 0.6);
+        padding: 20px;
+        border-radius: 16px;
+        text-decoration: none !important;
+        transition: transform 0.3s;
+        border: 1px solid rgba(255,255,255,0.05);
+        display: flex;
+        flex-direction: column;
+    }
+    .link-card:hover { transform: translateY(-5px); background: rgba(50, 50, 50, 0.8); }
+    
+    .link-card.purple { border-top: 3px solid #b5179e; }
+    .link-card.green { border-top: 3px solid #08e39a; }
+    .link-card.blue { border-top: 3px solid #4361ee; }
 
-    /* 动画 */
-    @keyframes floatUp {
-        from { opacity: 0; transform: translateY(30px); }
-        to { opacity: 1; transform: translateY(0); }
+    .card-title { font-weight: bold; font-size: 1.1rem; color: #fff; margin-bottom: 5px; }
+    .card-desc { font-size: 0.85rem; color: #aaa; }
+
+    .footer-simple {
+        margin-top: 20px;
+        font-size: 0.8rem;
+        color: rgba(255,255,255,0.5);
     }
 
     /* 移动端适配 */
     @media (max-width: 768px) {
-        .dashboard-container { padding: 25px; width: 95%; }
-        .main-title { font-size: 2.5rem; }
-        .dashboard-content { flex-direction: column; align-items: flex-start; }
-        .right-section { width: 100%; justify-content: flex-start; margin-top: 10px; }
-        .dashboard-footer { justify-content: space-between; }
-        .stat-separator { display: none; }
-        .stat-item { width: 30%; align-items: center; }
+        .profile-container { flex-direction: column; padding: 15px; margin-top: 20px; }
+        .left-sidebar { width: 100%; }
+        .avatar-img { width: 100px; height: 100px; }
+        .hello-text { font-size: 2.5rem; }
+        .link-cards { grid-template-columns: 1fr; }
     }
 </style>
 
 <!-- 
   =========================================
-  JavaScript 逻辑区域
+  JavaScript 逻辑
   =========================================
 -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // 1. 随机背景图逻辑
-        var bgElement = document.getElementById('hero-background');
-
+        // 1. 随机背景逻辑 (CDN加速)
+        var bgElement = document.getElementById('bg-layer');
+        // 使用 jsDelivr CDN 加速链接，避免大图卡顿
         var baseUrl = "https://cdn.jsdelivr.net/gh/4utumny/4utumny.github.io@main/docs/images/";
-        
-        // 你本地的图片路径
         var images = [
-             "images/beijing1.jpg",
-             "images/beijing2.jpg",
-             "images/beijing3.jpg",
-             "images/beijing4.jpg",
-             "images/beijing5.jpg",
-             "images/beijing6.jpg"
+             "beijing1.jpg", "beijing2.jpg", "beijing3.jpg", 
+             "beijing4.jpg", "beijing5.jpg", "beijing6.jpg"
         ];
         
-        // 如果本地图片还没准备好，为了防止白屏，暂时检测一下
-        // 如果你想测试效果，可以先把下面这行取消注释，使用网络图看效果
-        // images = ["https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=80&w=1920&fit=crop"];
-
         var randomIndex = Math.floor(Math.random() * images.length);
-        var selectedImage = images[randomIndex];
-        bgElement.style.backgroundImage = "url('" + selectedImage + "')";
-
-        // 2. 日期卡片逻辑 (自动更新为今天)
-        var date = new Date();
-        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-        
-        document.getElementById('current-month').innerText = months[date.getMonth()];
-        document.getElementById('current-day').innerText = String(date.getDate()).padStart(2, '0');
-        document.getElementById('current-weekday').innerText = days[date.getDay()];
+        bgElement.style.backgroundImage = "url('" + baseUrl + images[randomIndex] + "')";
     });
 
-    // 3. 运行时间逻辑
+    // 2. 运行时间逻辑
     function updateTime() {
         var date = new Date();
         var now = date.getTime();
-        
-        var startDate = new Date("2025/08/31 00:00:00"); // 建议改为过去的时间
-        
-        var start = startDate.getTime();
-        var diff = now - start;
+        // 修改为你的真实建站时间，例如 2024/05/20
+        var startDate = new Date("2025/08/31 00:00:00"); 
+        var diff = now - startDate.getTime();
 
+        if (diff < 0) { document.getElementById("web-time").innerHTML = "即将开始"; return; }
 
-        var y = Math.floor(diff / (365 * 24 * 3600 * 1000));
-        diff -= y * 365 * 24 * 3600 * 1000;
         var d = Math.floor(diff / (24 * 3600 * 1000));
-        var h = Math.floor(diff / (3600 * 1000) % 24);
-
-        var content = "";
-        if (y > 0) content += y + "y ";
-        content += d + "d " + h + "h";
-        
-        document.getElementById("web-time").innerHTML = content;
+        document.getElementById("web-time").innerHTML = "Running: " + d + " Days";
         setTimeout(updateTime, 60000);
     }
     updateTime();
