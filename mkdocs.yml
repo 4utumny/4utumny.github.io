@@ -162,7 +162,7 @@ plugins:
 hooks:  # 钩子
   - hooks/socialmedia.py      # 社交媒体
 
-copyright: Copyright &copy; 2024 Rango   #  自定义版权信息
+copyright: Copyright &copy; 2025 4utumny   #  自定义版权信息
 
 extra: 
   # generator: false  #删除页脚显示“使用 MkDocs 材料制造”
