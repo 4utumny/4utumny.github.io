@@ -342,12 +342,12 @@ nostatistics: true
         
         // 你本地的图片路径
         var images = [
-             "images/beijing1.png",
-             "images/beijing2.png",
-             "images/beijing3.png",
-             "images/beijing4.png",
-             "images/beijing5.png",
-             "images/beijing6.png"
+             "images/beijing1.jpg",
+             "images/beijing2.jpg",
+             "images/beijing3.jpg",
+             "images/beijing4.jpg",
+             "images/beijing5.jpg",
+             "images/beijing6.jpg"
         ];
         
         // 如果本地图片还没准备好，为了防止白屏，暂时检测一下
