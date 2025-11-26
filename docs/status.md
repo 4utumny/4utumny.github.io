@@ -15,7 +15,7 @@ icon: material/timeline-clock-outline
 
 ## 2024
 
-*   **2024-05-02** : 我好开心哈哈哈！
+*   **2024-05-02** : lulululu, hahahah!
 *   **2024-05-01** : Writing my final thesis, feeling a bit stressed but excited! 📝
 *   **2024-04-28** : Refactoring my personal website homepage using CSS Grid. 🎨
 *   **2024-04-20** : Started learning Vue.js 3, the Composition API is cool. 🚀
