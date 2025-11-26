@@ -185,13 +185,13 @@ extra:
       mermaid: https://cdn.jsdelivr.net/npm/mermaid@9/dist/mermaid.min.js
 
   # 社交链接，可自定义，在页面底部显示
-  social:
-    - icon: material/github
-      link: https://github.com/4utumny/4utumny.github.io/discussions
-      name: GitHub
-    - icon: material/email
-      link: mailto:<1657636021@qq.com> #联系方式
-      name: qq邮箱
+  #social:
+  #  - icon: material/github
+  #    link: https://github.com/4utumny/4utumny.github.io/discussions
+  #    name: GitHub
+  #  - icon: material/email
+  #    link: mailto:<1657636021@qq.com> #联系方式
+  #    name: qq邮箱
   #TODO 分享
   social_share:
     - platform: twitter

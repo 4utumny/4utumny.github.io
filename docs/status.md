@@ -13,22 +13,12 @@ icon: material/timeline-clock-outline
 
 这里记录我日常的状态更新。
 
-## 2024
+## 2025
 
-*   **2024-05-03** : lulululu, hahahah(Eng maohao)!
-*   **2024-05-02** ：我好高兴今天哈哈哈（中文冒号）！
-*   **2024-05-01** : Writing my final thesis, feeling a bit stressed but excited! 📝
-*   **2024-04-28** : Refactoring my personal website homepage using CSS Grid. 🎨
-*   **2024-04-20** : Started learning Vue.js 3, the Composition API is cool. 🚀
-*   **2024-04-15** : Went for a 50km cycling trip around the lake. 🚴‍♂️
-*   **2024-04-10** : Reading papers on Deep Learning optimization. 📚
-*   **2024-03-25** : Fixed a critical bug in the backend API. 🐛
-*   **2024-03-01** : Hello World! Initialized this status log. 👋
+*   **2025-11-26** ：设计主页，Gemini3真强吧
+*   **2025-11-24** ：睡落枕了，疼得夸张
+*   **2025-11-23** ：学习mkdocs构建网站
 
-## 2023
-
-*   **2023-12-25** : Merry Christmas! 🎄
-*   **2023-11-11** : Bought a new mechanical keyboard. ⌨️
 
 </div>
 
