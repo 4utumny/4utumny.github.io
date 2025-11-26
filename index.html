@@ -1977,7 +1977,7 @@
     <div class="left-sidebar">
         <!-- 头像 (纯圆设计) -->
         <div class="avatar-wrapper">
-            <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/autumn.png" data-title="Avatar" data-desc-position="bottom"><img src="images/autumn.png" alt="Avatar" class="avatar-circle" onerror="this.src='https://ui-avatars.com/api/?name=4u&amp;background=0D8ABC&amp;color=fff'"></a>
+            <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/touxiang.png" data-title="Avatar" data-desc-position="bottom"><img src="images/touxiang.png" alt="Avatar" class="avatar-circle" onerror="this.src='https://ui-avatars.com/api/?name=4u&amp;background=0D8ABC&amp;color=fff'"></a>
         </div>
 
         <!-- 简介 -->
@@ -1996,7 +1996,8 @@
         <div class="card status-box">
             <div class="box-header">
                 <span class="box-title">⚡ My Status</span>
-                <a href="status/" class="more-btn" title="查看更多">More+</a>
+                <!-- 修改：使用 span + onclick 替代 a 标签，彻底禁用 MkDocs 的悬浮预览 -->
+                <span onclick="location.href='status/'" class="more-btn" title="查看更多">More+</span>
             </div>
             <div id="status-list" class="status-list">
                 <!-- JS 将在这里渲染内容 -->
@@ -2032,22 +2033,23 @@
             </a>
         </div>
 
-        <!-- 2. 贡献墙 -->
+        <!-- 2. 真实 GitHub 贡献墙 -->
         <div class="card graph-card">
             <div class="graph-header">
-                <span class="graph-title">🌱 Contributions to Home</span>
+                <span class="graph-title">🌱 Contributions (Last 365 Days)</span>
                 <span class="graph-legend">Less <span class="legend-box l-0"></span><span class="legend-box l-1"></span><span class="legend-box l-2"></span><span class="legend-box l-3"></span><span class="legend-box l-4"></span> More</span>
             </div>
+            <!-- 加载状态提示 -->
+            <div id="contrib-loading" style="font-size:0.8rem; color:#888; text-align:center; padding:10px;">Loading GitHub Data...</div>
             <div class="contribution-grid" id="contrib-grid"></div>
         </div>
 
-        <!-- 3. 学术生涯 (单列全宽布局) -->
+        <!-- 3. 学术生涯 -->
         <div class="edu-section-title">🎓 Academic Journey</div>
         <div class="edu-wrapper">
             <!-- CUMT -->
             <div class="card edu-item">
                 <div class="edu-logo-wrapper">
-                    <!-- 请确保 images/cumt.png 存在 -->
                     <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/cumt.png" data-title="CUMT" data-desc-position="bottom"><img src="images/cumt.png" alt="CUMT" onerror="this.src='https://via.placeholder.com/80?text=CUMT'"></a>
                 </div>
                 <div class="edu-info">
@@ -2067,7 +2069,6 @@
             <!-- ECNU -->
             <div class="card edu-item">
                 <div class="edu-logo-wrapper">
-                    <!-- 请确保 images/ecnu.png 存在 -->
                     <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/ecnu.png" data-title="ECNU" data-desc-position="bottom"><img src="images/ecnu.png" alt="ECNU" onerror="this.src='https://via.placeholder.com/80?text=ECNU'"></a>
                 </div>
                 <div class="edu-info">
@@ -2112,8 +2113,8 @@
     --text-main: var(--md-text-color);
     --text-muted: var(--md-default-fg-color--light);
     --accent-color: #08e39a;
-    --grid-gap: 4px;
-    --box-size: 11px;
+    --grid-gap: 3px; /* 缩小间隙以适应一行 */
+    --box-size: 10px; /* 缩小格子以适应一行 */
 }
 
 /* 布局基础 */
@@ -2144,7 +2145,7 @@
     border-color: var(--accent-color);
 }
 
-/* === 左侧栏 (加宽到 280px) === */
+/* === 左侧栏 === */
 .left-sidebar {
     width: 280px;
     flex-shrink: 0;
@@ -2153,7 +2154,7 @@
     gap: 15px;
 }
 
-/* 头像：去掉了卡片背景，仅显示圆形图片 */
+/* 头像 */
 .avatar-wrapper {
     display: flex;
     justify-content: center;
@@ -2182,36 +2183,28 @@
     font-weight: 500;
 }
 
-/* 状态栏优化 */
+/* 状态栏 */
 .status-box { padding: 15px; }
 .box-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--card-border); padding-bottom: 8px;}
 .box-title { font-weight: bold; font-size: 0.95rem; color: var(--text-main); }
-.more-btn { font-size: 0.75rem; color: var(--accent-color); text-decoration: none; font-weight: bold;}
+.more-btn { 
+    font-size: 0.75rem; color: var(--accent-color); 
+    font-weight: bold; cursor: pointer; /* 鼠标手势 */
+    padding: 2px 5px;
+}
+.more-btn:hover { text-decoration: underline; }
 
 .status-item { 
     margin-bottom: 12px;
     padding-left: 10px;
     border-left: 2px solid var(--card-border);
     display: flex;
-    flex-direction: column; /* 让文字和日期垂直排列 */
+    flex-direction: column; 
     gap: 4px;
 }
 .status-item:first-child { border-left-color: var(--accent-color); }
-
-.s-text { 
-    font-size: 0.9rem; 
-    color: var(--text-main); 
-    line-height: 1.4;
-    font-weight: 500;
-}
-.s-date { 
-    font-size: 0.75rem; 
-    color: var(--text-muted); 
-    background: var(--md-default-fg-color--lightest);
-    padding: 1px 6px;
-    border-radius: 4px;
-    width: fit-content;
-}
+.s-text { font-size: 0.9rem; color: var(--text-main); line-height: 1.4; font-weight: 500; }
+.s-date { font-size: 0.75rem; color: var(--text-muted); background: var(--md-default-fg-color--lightest); padding: 1px 6px; border-radius: 4px; width: fit-content; }
 
 /* === 右侧内容 === */
 .right-content {
@@ -2219,15 +2212,15 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    min-width: 0; /* 防止Flex子元素溢出 */
+    min-width: 0;
 }
 
-/* Hero Section: 横向排列 */
+/* Hero Section */
 .hero-section { 
     display: flex; 
-    align-items: baseline; /* 基线对齐 */
+    align-items: baseline; 
     gap: 15px;
-    flex-wrap: wrap; /* 移动端自动换行 */
+    flex-wrap: wrap; 
     margin-bottom: 5px;
 }
 .hello-text {
@@ -2235,13 +2228,17 @@
     font-weight: 700;
     color: var(--text-main);
 }
+/* 修复点1：名字字体截断问题 */
 .name-text {
     font-family: 'Pacifico', cursive;
     font-size: 3.5rem;
     background: linear-gradient(120deg, #08e39a, #3498db);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    line-height: 1.2;
+    line-height: 1.4; /* 增大行高 */
+    padding-bottom: 15px; /* 增加底部内边距，容纳y的尾巴 */
+    margin-bottom: -15px; /* 抵消内边距带来的布局偏移 */
+    display: inline-block; /* 确保padding生效 */
 }
 
 .desc-text {
@@ -2265,40 +2262,41 @@
 .social-btn svg { width: 22px; height: 22px; }
 
 /* 贡献图 */
-.graph-card { padding: 15px; overflow-x: auto; }
+.graph-card { padding: 15px; }
+.graph-header { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 8px; }
+.graph-legend { display: flex; align-items: center; gap: 2px; }
+.legend-box { width: 10px; height: 10px; border-radius: 2px; display: inline-block; margin: 0 2px;}
+
+/* 贡献图网格 - 移除滚动条 */
 .contribution-grid {
     display: grid;
+    /* 53列 (周) */
+    grid-template-columns: repeat(53, var(--box-size));
+    /* 7行 (天) */
     grid-template-rows: repeat(7, var(--box-size));
-    grid-auto-flow: column;
     gap: var(--grid-gap);
-    padding-top: 10px;
+    justify-content: flex-start; /* 靠左对齐 */
+    overflow: hidden; /* 隐藏溢出 */
 }
-.grid-box { width: var(--box-size); height: var(--box-size); border-radius: 2px; }
-/* 贡献图颜色 - 适配暗黑模式 */
+.grid-box { width: var(--box-size); height: var(--box-size); border-radius: 2px; background: var(--md-default-fg-color--lightest); }
+
+/* 贡献颜色 */
 [data-md-color-scheme="default"] .l-0 { background: #ebedf0; }
 [data-md-color-scheme="default"] .l-1 { background: #9be9a8; }
 [data-md-color-scheme="default"] .l-2 { background: #40c463; }
 [data-md-color-scheme="default"] .l-3 { background: #30a14e; }
 [data-md-color-scheme="default"] .l-4 { background: #216e39; }
+
 [data-md-color-scheme="slate"] .l-0 { background: #161b22; }
 [data-md-color-scheme="slate"] .l-1 { background: #0e4429; }
 [data-md-color-scheme="slate"] .l-2 { background: #006d32; }
 [data-md-color-scheme="slate"] .l-3 { background: #26a641; }
 [data-md-color-scheme="slate"] .l-4 { background: #39d353; }
 
-/* === 学术生涯 (单列全宽) === */
+/* === 学术生涯 === */
 .edu-section-title { font-weight: bold; font-size: 1.2rem; margin: 10px 0 5px; color: var(--text-main); }
-.edu-wrapper { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 15px; 
-}
-.edu-item { 
-    display: flex; 
-    align-items: center; 
-    gap: 20px; 
-    padding: 20px;
-}
+.edu-wrapper { display: flex; flex-direction: column; gap: 15px; }
+.edu-item { display: flex; align-items: center; gap: 20px; padding: 20px;}
 .edu-logo-wrapper {
     width: 70px; height: 70px; flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
@@ -2306,7 +2304,6 @@
     border: 1px solid #eee;
 }
 .edu-logo-wrapper img { width: 100%; height: 100%; object-fit: contain; }
-
 .edu-info { flex: 1; display: flex; flex-direction: column; gap: 4px; }
 .edu-row-1 { display: flex; justify-content: space-between; align-items: center; }
 .school-name { font-weight: bold; font-size: 1.1rem; color: var(--text-main); }
@@ -2323,9 +2320,7 @@
 }
 
 /* 底部统计 */
-.stats-footer { 
-    display: flex; justify-content: center; gap: 20px; padding: 10px; margin-top: 20px; border: none; background: transparent; box-shadow: none;
-}
+.stats-footer { display: flex; justify-content: center; gap: 20px; padding: 10px; margin-top: 20px; border: none; background: transparent; box-shadow: none;}
 .stat-box { display: flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.9rem;}
 
 /* 移动端适配 */
@@ -2337,56 +2332,148 @@
     .edu-item { flex-direction: column; align-items: flex-start; text-align: left; }
     .edu-logo-wrapper { width: 50px; height: 50px; margin-bottom: 10px; }
     .edu-row-1 { flex-direction: row; width: 100%; }
+    /* 移动端允许滚动 */
+    .contribution-grid { overflow-x: auto; grid-template-columns: repeat(53, 10px); }
 }
 </style>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Status 数据 - 更新 UI 为竖排胶囊样式
-        const statusData = [
-            { date: "2024-05-01", text: "Writing my final thesis, feeling a bit stressed! 📝" },
-            { date: "2024-04-28", text: "Refactoring my personal website homepage. 🎨" },
-            { date: "2024-04-20", text: "Started learning Vue.js 3 Composition API. 🚀" },
-            { date: "2024-04-15", text: "Went for a 50km cycling trip around the lake. 🚴‍♂️" }
-        ];
+document.addEventListener("DOMContentLoaded", function() {
 
-        const statusContainer = document.getElementById('status-list');
-        statusData.slice(0, 4).forEach(item => {
-            let div = document.createElement('div');
-            div.className = 'status-item';
-            // 日期简化：只取 月-日，或者保留完整，这里保留完整但样式已优化
-            div.innerHTML = `
-                <span class="s-text">${item.text}</span>
-                <span class="s-date">📅 ${item.date}</span>
-            `;
-            statusContainer.appendChild(div);
-        });
+    // -------------------------------------------------------------------
+    // 1. Status 列表 (静态数据)
+    // -------------------------------------------------------------------
+    const statusData = [
+        { date: "2024-05-01", text: "Writing my final thesis, feeling a bit stressed! 📝" },
+        { date: "2024-04-28", text: "Refactoring my personal website homepage. 🎨" },
+        { date: "2024-04-20", text: "Started learning Vue.js 3 Composition API. 🚀" },
+        { date: "2024-04-15", text: "Went for a 50km cycling trip around the lake. 🚴‍♂️" }
+    ];
 
-        // 贡献图生成
-        const gridContainer = document.getElementById('contrib-grid');
-        for (let i = 0; i < 53 * 7; i++) {
-            let div = document.createElement('div');
-            div.className = 'grid-box';
-            let level = 0;
-            let rand = Math.random();
-            if (rand > 0.8) level = 1;
-            if (rand > 0.9) level = 2;
-            if (rand > 0.96) level = 3;
-            if (rand > 0.99) level = 4;
-            div.classList.add('l-' + level);
-            gridContainer.appendChild(div);
-        }
-
-        // 时间统计
-        function updateTime() {
-            var startDate = new Date("2022/01/01 00:00:00"); // 修改为你的时间
-            var now = new Date();
-            var diff = now - startDate;
-            var days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            document.getElementById("web-time").innerText = days + " Days";
-        }
-        updateTime();
+    const statusContainer = document.getElementById('status-list');
+    statusData.slice(0, 4).forEach(item => {
+        let div = document.createElement('div');
+        div.className = 'status-item';
+        div.innerHTML = `<span class="s-text">${item.text}</span><span class="s-date">📅 ${item.date}</span>`;
+        statusContainer.appendChild(div);
     });
+
+    // -------------------------------------------------------------------
+    // 2. 真实 GitHub 贡献图逻辑
+    // -------------------------------------------------------------------
+    const gridContainer = document.getElementById('contrib-grid');
+    const loadingDiv = document.getElementById('contrib-loading');
+
+    // 配置信息
+    const username = "4utumny";
+    const repo = "4utumny.github.io";
+
+    // 初始化空网格 (53列 x 7行 = 371个格子，确保覆盖一年)
+    const totalDays = 371; 
+    const boxes = [];
+
+    for (let i = 0; i < totalDays; i++) {
+        let div = document.createElement('div');
+        div.className = 'grid-box l-0'; // 默认灰色
+        gridContainer.appendChild(div);
+        boxes.push(div);
+    }
+
+    // 获取 GitHub Commit 数据
+    async function fetchCommits() {
+        try {
+            // 获取最近100条 commit (GitHub API 每页最多100，对于展示活跃度通常够了)
+            // 如果你提交非常频繁，可以考虑 fetch 两页，但注意 API 速率限制
+            const response = await fetch(`https://api.github.com/repos/${username}/${repo}/commits?per_page=100`);
+
+            if (!response.ok) throw new Error('Network response was not ok');
+            const data = await response.json();
+
+            // 统计每天的 commit 数量
+            const commitMap = {};
+            data.forEach(commit => {
+                // commit.commit.author.date 格式: "2024-05-01T12:00:00Z"
+                const dateStr = commit.commit.author.date.split('T')[0];
+                if (commitMap[dateStr]) {
+                    commitMap[dateStr]++;
+                } else {
+                    commitMap[dateStr] = 1;
+                }
+            });
+
+            renderGrid(commitMap);
+            loadingDiv.style.display = 'none'; // 隐藏 Loading
+
+        } catch (error) {
+            console.error('Error fetching commits:', error);
+            loadingDiv.innerText = "Failed to load GitHub data (API Rate Limit or Network Error).";
+        }
+    }
+
+    // 渲染网格颜色
+    function renderGrid(commitMap) {
+        const today = new Date();
+        // 计算这一年的起始日期：我们从网格的最后一个格子(今天)倒推
+        // 这里的逻辑是：Grid 是竖排还是横排？GitHub 官方是竖排 (Column=Week, Row=Day)
+        // CSS Grid 我们定义了 53 列，7 行，默认是先填满第一行，再填第二行 (row-dense)
+        // 为了模拟 GitHub 的竖排效果 (Column-first)，我们需要用 CSS grid-auto-flow: column
+        gridContainer.style.gridAutoFlow = "column";
+
+        // 我们需要填充 53周 * 7天
+        // 从 "一年前的那个周日" 开始计算，或者是简单的 "从今天倒推371天"
+
+        // 简化逻辑：倒序填充。最后一个格子是今天。
+        // 但 Grid 布局默认是从左上角开始。
+        // 所以我们正序计算日期。
+
+        // 找到 Grid 开始的日期 (大约一年前)
+        // 假设 Grid 结束于今天，那么 Grid 的第 (totalDays-1) 个格子是今天
+        // 但是 GitHub 的 Grid 通常结束于 "本周六" 或者 "今天"
+        // 让我们简单处理：计算 Grid 第一个格子代表的日期
+
+        // GitHub Grid 逻辑：最后的一列包含今天。
+        // 如果今天是周三，那么最后这一列下面还有空位。
+        // 为了简单，我们只映射过去 365 天的数据到这 371 个格子里。
+
+        // 生成日期数组
+        const dateArray = [];
+        for (let i = 0; i < totalDays; i++) {
+            const d = new Date();
+            d.setDate(d.getDate() - (totalDays - 1 - i)); // 倒推
+            const dateString = d.toISOString().split('T')[0];
+            dateArray.push(dateString);
+        }
+
+        // 填充颜色
+        dateArray.forEach((dateStr, index) => {
+            const count = commitMap[dateStr] || 0;
+            let level = 0;
+            if (count > 0) level = 1;
+            if (count > 2) level = 2;
+            if (count > 4) level = 3;
+            if (count > 6) level = 4;
+
+            if (boxes[index]) {
+                boxes[index].className = `grid-box l-${level}`;
+                boxes[index].title = `${dateStr}: ${count} commits`; // 添加简单的鼠标提示
+            }
+        });
+    }
+
+    fetchCommits();
+
+    // -------------------------------------------------------------------
+    // 3. 网站运行时间
+    // -------------------------------------------------------------------
+    function updateTime() {
+        var startDate = new Date("2022/01/01 00:00:00"); // 修改为你的时间
+        var now = new Date();
+        var diff = now - startDate;
+        var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        document.getElementById("web-time").innerText = days + " Days";
+    }
+    updateTime();
+});
 </script>
 
 
