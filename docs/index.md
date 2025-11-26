@@ -339,6 +339,8 @@ nostatistics: true
     document.addEventListener("DOMContentLoaded", function() {
         // 1. 随机背景图逻辑
         var bgElement = document.getElementById('hero-background');
+
+        var baseUrl = "https://cdn.jsdelivr.net/gh/4utumny/4utumny.github.io@main/docs/images/";
         
         // 你本地的图片路径
         var images = [
