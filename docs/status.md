@@ -9,7 +9,7 @@ icon: material/timeline-clock-outline
 <!-- 使用 attr_list 扩展 (在 mkdocs.yml 中已开启) 为 div 添加类名，避免直接写 HTML 包裹导致的解析问题 -->
 <div class="timeline-page" markdown="1">
 
-# 📅 Status History
+# Status History
 
 这里记录我日常的状态更新。
 
