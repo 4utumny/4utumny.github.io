@@ -1,5 +1,5 @@
 ---
-title: My Status History
+title: My Status
 hide:
   - toc
   - feedback
@@ -10,13 +10,11 @@ hide:
 <!-- 使用 attr_list 扩展 为 div 添加类名 -->
 <div class="timeline-page" markdown="1">
 
-# Status History
-
-这里记录我日常的状态更新。
+# 我的状态
 
 ## 2025
 
-*   **2025-11-27** ：哈哈哈哈！
+*   **2025-11-27** ：今天怪奇物语第5季上线！
 *   **2025-11-26** ：设计主页，Gemini3真强吧
 *   **2025-11-24** ：睡落枕了，疼得夸张
 *   **2025-11-23** ：学习mkdocs构建网站
