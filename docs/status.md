@@ -2,8 +2,10 @@
 title: My Status
 hide:
   - toc
+  - footer
   - feedback
   - navigation  # <---【问题2解决】添加这一行，隐藏左侧目录/导航栏
+nostatistics: true
 #icon: material/timeline-clock-outline
 ---
 
