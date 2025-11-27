@@ -4,7 +4,7 @@ hide:
   - toc
   - feedback
   - navigation  # <---【问题2解决】添加这一行，隐藏左侧目录/导航栏
-icon: material/timeline-clock-outline
+#icon: material/timeline-clock-outline
 ---
 
 <!-- 使用 attr_list 扩展 为 div 添加类名 -->
